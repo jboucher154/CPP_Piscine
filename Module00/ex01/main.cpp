@@ -1,9 +1,9 @@
 #include "PhoneBook.hpp"
 
-int	main(void)
+int	main( void )
 {
 	PhoneBook 	phonebook;
 
-	phonebook.ui();
+	phonebook.userInterface();
 	return (0);
 }

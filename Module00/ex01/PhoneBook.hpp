@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/29 16:43:57 by jebouche          #+#    #+#             */
+/*   Updated: 2023/06/30 15:11:08 by jebouche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
@@ -8,26 +19,28 @@
 
 class	PhoneBook 
 {
-	private: 
-		Contact	contacts[8];
-		int		contact_index;
-		bool	filled;
-		int		_set_contact_info(void);
-		int		_set_first_name(void);
-		int		_set_last_name(void);
-		int		_set_nickname(void);
-		int		_set_phone_number(void);
-		int		_set_darkest_secret(void);
-		int		_get_input(std::string *read_to);
-		void	_display_summary(void);
-		void	_print_field(std::string to_print);
-		void	_display_searched(int searched);
-		int		_add_contact(void);
-		int		_search(void);
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
-		int		ui(void);
+		int		userInterface(void);
+		
+	private: 
+		Contact	_contacts[8];
+		int		_contact_index;
+		bool	_filled;
+		
+		int		_setContactInfo(void);
+		int		_setFirstName(void);
+		int		_setLastName(void);
+		int		_setNickname(void);
+		int		_setPhoneNumber(void);
+		int		_setDarkestSecret(void);
+		int		_getInput(std::string *read_to);
+		void	_displaySummary(void);
+		void	_printField(std::string to_print);
+		void	_displaySearched(int searched);
+		int		_addContact(void);
+		int		_search(void);
 };
 
 #endif
