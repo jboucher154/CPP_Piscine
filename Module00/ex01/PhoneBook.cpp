@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:43:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/06/30 17:32:30 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:45:41 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int	PhoneBook::_setFirstName(void) {
 		res = _getInput(&first_name);
 		if (res != FAILURE)
 			this->_contacts[_contact_index].setFirstName(first_name);
-		if (first_name.empty())
+		if (res != FAILURE && first_name.empty())
 			std::cout << COLOR_BRIGHT_RED << "This can't be empty" << COLOR_RESET << std::endl;
 	} 
 	while (res != FAILURE && first_name.empty());
@@ -195,7 +195,7 @@ int	PhoneBook::_setLastName(void) {
 		res = _getInput(&last_name);
 		if (res != FAILURE)
 			this->_contacts[_contact_index].setLastName(last_name);
-		if (last_name.empty())
+		if (res != FAILURE && last_name.empty())
 			std::cout << COLOR_BRIGHT_RED << "This can't be empty" << COLOR_RESET << std::endl;
 	}
 	while (res != FAILURE && last_name.empty());
@@ -210,7 +210,7 @@ int	PhoneBook::_setNickname(void) {
 		res = _getInput(&nickname);
 		if (res != FAILURE)
 			this->_contacts[_contact_index].setNickname(nickname);
-		if (nickname.empty())
+		if (res != FAILURE && nickname.empty())
 			std::cout << COLOR_BRIGHT_RED << "This can't be empty" << COLOR_RESET << std::endl;
 	}
 	while (res != FAILURE && nickname.empty());
@@ -231,7 +231,7 @@ int	PhoneBook::_setPhoneNumber(void) {
 		if (phone_number.length() != 12)
 		{
 			std::cout << "Yo, enter a 10 digit phone number like this, ex: 000 000 0000:" << std::endl;
-			std::cout << COLOR_BRIGHT_RED << "This can't be empty" << COLOR_RESET << std::endl;
+			std::cout << COLOR_BRIGHT_RED << "Also, this can't be empty" << COLOR_RESET << std::endl;
 		}
 		else if (phone_number.find_first_not_of("0123456789 ", 0) != std::string::npos)
 		{
@@ -258,7 +258,7 @@ int	PhoneBook::_setDarkestSecret(void) {
 		res = _getInput(&darkest_secret);
 		if (res != FAILURE)
 			this->_contacts[_contact_index].setDarkestSecret(darkest_secret);
-		if (darkest_secret.empty())
+		if (res != FAILURE && darkest_secret.empty())
 			std::cout << COLOR_BRIGHT_RED << "This can't be empty" << COLOR_RESET << std::endl;
 	}
 	while (res != FAILURE && darkest_secret.empty());

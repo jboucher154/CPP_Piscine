@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:40:10 by jebouche          #+#    #+#             */
-/*   Updated: 2023/06/29 17:42:14 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:48:49 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class	Contact
 		std::string	getNickname(void) const;
 		std::string	getPhoneNumber(void) const;
 		std::string	getDarkestSecret(void) const;
+		
 	private: 
 		std::string _first_name;
 		std::string _last_name;
