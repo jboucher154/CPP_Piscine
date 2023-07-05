@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:49 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:45:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:10:09 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class HumanA {
 	public:
 		HumanA( std::string name, Weapon &initial_Weapon );
-		~HumanA();
+		~HumanA( void );
 		void	attack( void ) const;
 	private:
 		std::string	_name;
