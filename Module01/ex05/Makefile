@@ -6,12 +6,12 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 17:28:52 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/05 11:36:08 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/05 13:50:55 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := Harl_2_0
-INCLUDES := Harl.hpp
+INCLUDES := Harl.hpp Color.hpp
 SRCS := main.cpp Harl.cpp
 OBJS := $(SRCS:.cpp=.o)
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -I.
