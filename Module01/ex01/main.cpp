@@ -21,6 +21,6 @@ int	main( void ) {
 	for (int i = 0; i < count; i++) {
 		horde->announce();
 	}
-	delete[] horde;
+	delete [] horde;
 	return (0);
 }
