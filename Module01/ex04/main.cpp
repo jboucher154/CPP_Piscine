@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 14:00:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:03:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	process_line(std::string &line, std::string const &to_find, std::string con
 	position = line.find(to_find);
 	while (position != std::string::npos) {
 		line.erase(position, to_find.length());
-		line.insert(position, replace_with); //may not need to be plus one
+		line.insert(position, replace_with);
 		position = line.find(to_find);
 	}
 }
