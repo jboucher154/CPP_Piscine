@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:45:59 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:06:55 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class HumanB {
 		HumanB( std::string name);
 		~HumanB();
 		void	attack( void ) const;
-		void	setWeapon( Weapon new_weapon );
+		void	setWeapon( Weapon &new_weapon );
 	private:
 		std::string	_name;
 		Weapon		*_weapon;
