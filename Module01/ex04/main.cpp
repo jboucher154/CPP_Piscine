@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 16:26:08 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:08:32 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	replace_all(char *argv[]) {
 			process_line(line, argv[2], argv[3]);
 			outputFile << line << std::endl;
 		}
+		inputFile.close();
+		outputFile.close();
 	}
 	else {
 		if (!inputFile.is_open())
