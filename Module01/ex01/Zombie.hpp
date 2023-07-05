@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:02 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:45:04 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:00:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ class Zombie {
 		Zombie( void );
 		Zombie( std::string name );
 		~Zombie( void );
-		void	announce( void ); //const? public?
+		void	announce( void );
+		void	setName( std::string name );
 
 	private:
 		std::string	_name;
