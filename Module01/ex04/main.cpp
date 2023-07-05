@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 14:03:25 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:26:52 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ void	replace_all(char *argv[]) {
 			outputFile << line << std::endl;
 		}
 	}
-	else
-		std::cout << "Error: could not open files" << std::endl;
+	else {
+		if (!inputFile.is_open())
+			std::cerr << "Error: could not open " << argv[1] << " file" << std::endl;
+		if (!outputFile.is_open())
+			std::cerr << "Error: could not open " << outputFName << " file" << std::endl;
+	}
 }
 
 int	main(int argc, char *argv[]) {
