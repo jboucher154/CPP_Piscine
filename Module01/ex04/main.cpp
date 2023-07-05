@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:26:52 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:26:08 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	process_line(std::string &line, std::string const &to_find, std::string con
 void	replace_all(char *argv[]) {
 	
 	std::ifstream	inputFile(argv[1]);
-	std::string		outputFName = argv[1]; outputFName.append(".replace");
+	std::string		outputFName = argv[1]; 
+	outputFName.append(".replace");
 	std::ofstream	outputFile(outputFName);
 	std::string		line;
 
