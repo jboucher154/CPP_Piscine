@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/04 16:00:37 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:14:37 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fstream>
 #include <string>
 
-void	process_line(std::string &line, std::string const to_find, std::string const replace_with) {
+void	process_line(std::string &line, std::string const &to_find, std::string const &replace_with) {
 
 	size_t	position;
 	
@@ -46,7 +46,6 @@ void	replace_all(char *argv[]) {
 
 int	main(int argc, char *argv[]) {
 
-	
 	if (argc != 4) {
 		std::cout << "Error: incorrect input: <filename> <string to find> <string to replace with>" << std::endl;
 		return (1);
