@@ -6,24 +6,28 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 17:28:52 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/04 17:28:55 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/05 11:36:08 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := Harl_2_0
 INCLUDES := Harl.hpp
 SRCS := main.cpp Harl.cpp
+OBJS := $(SRCS:.cpp=.o)
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -I.
 CC := c++
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(INCLUDES)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) 
+
+%.o: %.cpp $(INCLUDES)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "Cleaning object files..."
-	rm -f *.o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm $(NAME)
