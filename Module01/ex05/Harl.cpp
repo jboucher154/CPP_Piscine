@@ -9,7 +9,7 @@ Harl::~Harl( void ) {}
 
 void	Harl::complain( std::string level) {
 	void (Harl::*c[4]) (void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
-	std::string	levels[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string	levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
 	for (int i = 0; i < 4; i++) {
 		if (!level.compare(levels[i])) {
