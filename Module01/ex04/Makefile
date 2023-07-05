@@ -6,19 +6,23 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:43:45 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/05 15:43:46 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/05 16:59:09 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := sed_is_for_losers
 SRC := main.cpp
+OBJ := $(SRC:.cpp=.o)
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 CC := c++
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(INCLUDES)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
+%.o: %.cpp $(INCLUDES)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 run_test: $(NAME)
 	@echo "Testing..."
@@ -30,7 +34,7 @@ remove_tests:
 
 clean:
 	@echo "Cleaning object files..."
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm $(NAME)

@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:44:04 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/05 16:52:31 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/05 16:56:00 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC := c++
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(INCLUDES)
 	$(CC) $(CFLAGS) -c $< -o $@

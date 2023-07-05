@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:46:08 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/05 16:21:43 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/05 16:58:04 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 %.o: %.cpp $(INCLUDES)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "Cleaning object files..."
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm $(NAME)
