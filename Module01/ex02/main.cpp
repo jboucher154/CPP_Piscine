@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:45:34 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:08:17 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main( void ) {
 	std::cout << "str: " << str;
 	std::cout << 	", stringPTR: " << *stringPTR;
 	std::cout  << ", stringREF: " << stringREF << std::endl;
-
 	return (0);
 }
