@@ -8,17 +8,17 @@ class Fixed
 {
 	public:
 		Fixed( void );
-		Fixed( Fixed& to_copy );
+		Fixed( const Fixed& to_copy );
 		Fixed( const int fpNum );
 		Fixed( const float fpNum);
 		~Fixed( void );
 
-		Fixed			&operator=( Fixed& to_copy);
+		Fixed&	operator = (const Fixed& to_copy);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( const int raw );
-		float	to_float( void ) const;
-		int		to_int( void ) const;
+		float	toFloat( void ) const;
+		int		toInt( void ) const;
 
 	private:
 		static const int	_fractionlBits;
