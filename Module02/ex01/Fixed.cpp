@@ -10,13 +10,14 @@ Fixed::Fixed( void ) : _fixed_point_num(0) {
 
 //should convert the param to the fixed point num
 Fixed::Fixed( const int fpNum ) : _fixed_point_num(0) {
-	std::cout << "Paramaterized constructor called" << std::endl;
-	this->_fixed_point_num = fpNum << Fixed::_fractionlBits;
+	std::cout << "Paramaterized Int constructor called" << std::endl;
+	this->_fixed_point_num = (fpNum << Fixed::_fractionlBits);
 }
 
 //converts it to the corresponding fixed-point value.
-Fixed::Fixed( const float fpNum) : _fixed_point_num(0) {
-	
+Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
+	std::cout << "Paramaterized Float constructor called" << std::endl;
+	this->_fixed_point_num = (fpNum * (1 << Fixed::_fractionlBits)); //may need to round up for accuracy? 
 }
 
 //could use the assignment operator call here
@@ -47,6 +48,7 @@ void	Fixed::setRawBits( const int raw ) {
 
 float	Fixed::to_float( void ) const {
 	std::cout << "to_float member function called" << std::endl;
+	return (float(this->_fixed_point_num / (1 << Fixed::_fractionlBits))); //rounding issues?
 }
 
 int		Fixed::to_int( void ) const {
