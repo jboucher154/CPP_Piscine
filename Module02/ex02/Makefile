@@ -8,7 +8,7 @@ CC := c++
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "Creating fixedPointNumbers..."
+	@echo "Creating moreUseful..."
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) 
 
 %.o: %.cpp $(INCLUDES)
@@ -19,7 +19,7 @@ clean:
 	@rm -f $(OBJS)
 
 fclean: clean
-	@echo "Cleaning fixedPointNumbers..."
+	@echo "Cleaning moreUseful..."
 	@rm $(NAME)
 
 re: fclean all

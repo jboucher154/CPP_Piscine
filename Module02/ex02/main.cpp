@@ -2,21 +2,33 @@
 #include <iostream>
 #include "Fixed.hpp"
 
-int main( void ) {
+//+ vs +=????
+/** The 4 arithmetic operators: +, -, *, and / **/
+void	test_arithmetic( void ) {
+	Fixed a, b;
 
+	std::cout << "starting values: a: " << a << " b: " << b << std::endl;
+	a + 1;
+	std::cout << "add 1 to a: " << a << std::endl;
+	b - 1;
+	std::cout << "subtract 1 from b: " << b << std::endl;
+	a - b;
+	std::cout << "a minus b: " << a << std::endl; //comes out as 2
+}
+
+int main( void ) { 
 	Fixed a;
-	Fixed const b( 10 ); 
-	Fixed const c( 42.42f ); 
-	Fixed const d( b );
-	a = Fixed( 1234.4321f );
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-	return 0; 
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+
+	std::cout << "begin my tests" << std::endl;
+	test_arithmetic();
+	return (0); 
 }
