@@ -25,6 +25,6 @@ class Fixed
 		int					_fixed_point_num;
 };
 
-std::ostream&	operator<<(std::ostream& output_stream, const Fixed& to_print);
+std::ostream&	operator << (std::ostream& output_stream, const Fixed& to_print);
 
 #endif
