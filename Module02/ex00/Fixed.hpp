@@ -9,7 +9,7 @@ class Fixed
 		Fixed( int fpNum ); 
 		Fixed( Fixed& to_copy );
 		~Fixed( void );
-		Fixed &operator=( Fixed& to_copy);
+		Fixed &operator = ( Fixed& to_copy);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
