@@ -67,14 +67,20 @@ bool	Fixed::operator != (const Fixed& rhs) {
 
 // The 4 arithmetic operators: +, -, *, and /.
 Fixed& Fixed::operator + (const Fixed& rhs) {
-
+	this->_fixed_point_num += rhs.getRawBits();//check this
+	return (*this);
 }
+
 Fixed& Fixed::operator - (const Fixed& rhs) {
-
+	this->_fixed_point_num -= rhs.getRawBits();//check this
+	return (*this);
 }
+
 Fixed& Fixed::operator * (const Fixed& rhs) {
-
+	this->_fixed_point_num = ((int64_t)this->_fixed_point_num  * (int64_t)rhs.getRawBits()) >> 16;//check this
+	return (*this);
 }
+
 Fixed& Fixed::operator / (const Fixed& rhs) {
 
 }
