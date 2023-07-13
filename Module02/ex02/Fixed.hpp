@@ -24,10 +24,10 @@ class Fixed
 		bool	operator != (const Fixed& rhs);
 
 		// The 4 arithmetic operators: +, -, *, and /.
-		Fixed& operator + (const Fixed& rhs);
-		Fixed& operator - (const Fixed& rhs);
-		Fixed& operator * (const Fixed& rhs);
-		Fixed& operator / (const Fixed& rhs);
+		Fixed operator + (const Fixed& rhs);
+		Fixed operator - (const Fixed& rhs);
+		Fixed operator * (const Fixed& rhs);
+		Fixed operator / (const Fixed& rhs);
 
 		//  The 4 increment/decrement (pre-increment and post-increment, 
 		// pre-decrement and post-decrement) operators, that will increase 

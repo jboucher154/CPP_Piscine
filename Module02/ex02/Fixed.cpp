@@ -24,7 +24,7 @@ Fixed::Fixed( const Fixed& to_copy ) {
 /* DECONSTRUCTOR */
 
 Fixed::~Fixed( void ) {
-	std::cout << "Deconstructor called" << std::endl;
+	// std::cout << "Deconstructor called" << std::endl;
 }
 
 /* OPERATOR OVERLOADERS */
@@ -67,24 +67,28 @@ bool	Fixed::operator != (const Fixed& rhs) {
 
 /** The 4 arithmetic operators: +, -, *, and / **/
 
-Fixed& Fixed::operator + (const Fixed& rhs) {
-	this->_fixed_point_num += rhs.getRawBits();//check this
-	return (*this);
-}
-//wrong: when rhs is negative it adds
-Fixed& Fixed::operator - (const Fixed& rhs) {
-	this->_fixed_point_num = this->_fixed_point_num - rhs.getRawBits();//check this
-	return (*this);
+Fixed Fixed::operator + ( const Fixed& rhs) {
+	Fixed res;
+	res._fixed_point_num =  this->_fixed_point_num + rhs.getRawBits();
+	return (res);
 }
 
-Fixed& Fixed::operator * (const Fixed& rhs) {
-	this->_fixed_point_num = ((int64_t)this->_fixed_point_num  * (int64_t)rhs.getRawBits()) >> Fixed::_fractionlBits;//check this
-	return (*this);
+Fixed Fixed::operator - ( const Fixed& rhs) {
+	Fixed res;
+	res._fixed_point_num = this->_fixed_point_num - rhs.getRawBits();
+	return (res);
 }
 
-Fixed& Fixed::operator / (const Fixed& rhs) {
-	this->_fixed_point_num = ((int64_t)this->_fixed_point_num  << Fixed::_fractionlBits) * (int64_t)rhs.getRawBits();//check this
-	return (*this);
+Fixed Fixed::operator * ( const Fixed& rhs) {
+	Fixed res;
+	res._fixed_point_num = ((int64_t)this->_fixed_point_num  * (int64_t)rhs.getRawBits()) >> Fixed::_fractionlBits;
+	return (res);
+}
+
+Fixed Fixed::operator / ( const Fixed& rhs) {
+	Fixed res;
+	res._fixed_point_num = ((int64_t)this->_fixed_point_num * (1 << Fixed::_fractionlBits)) / (int64_t)rhs.getRawBits();
+	return (res);
 }
 
 /** The 4 increment/decrement (prefix and postfix **/
@@ -131,25 +135,25 @@ int		Fixed::toInt( void ) const {
 	return (this->_fixed_point_num >> Fixed::_fractionlBits);
 }
 
-const Fixed&	Fixed::min(const Fixed& one, const Fixed& two) {
+const Fixed&	Fixed::min( const Fixed& one, const Fixed& two ) {
 	if (one.getRawBits() < two.getRawBits())
 		return (one);
 	return (two);
 }
 
-Fixed&	Fixed::min(Fixed& one, Fixed& two) {
+Fixed&	Fixed::min( Fixed& one, Fixed& two ) {
 	if (one < two)
 		return (one);
 	return (two);
 }
 
-const Fixed&	Fixed::max(const Fixed& one, const Fixed& two) {
+const Fixed&	Fixed::max( const Fixed& one, const Fixed& two ) {
 	if (one.getRawBits() > two.getRawBits())
 		return (one);
 	return (two);
 }
 
-Fixed&	Fixed::max(Fixed& one, Fixed& two) {
+Fixed&	Fixed::max( Fixed& one, Fixed& two ) {
 	if (one > two)
 		return (one);
 	return (two);
