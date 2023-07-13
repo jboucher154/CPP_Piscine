@@ -5,15 +5,21 @@
 //+ vs +=????
 /** The 4 arithmetic operators: +, -, *, and / **/
 void	test_arithmetic( void ) {
-	Fixed a, b;
+	Fixed a(1), b(2), c(3);
 
-	std::cout << "starting values: a: " << a << " b: " << b << std::endl;
-	a + 1;
-	std::cout << "add 1 to a: " << a << std::endl;
-	b - 1;
-	std::cout << "subtract 1 from b: " << b << std::endl;
-	a - b;
-	std::cout << "a minus b: " << a << std::endl; //comes out as 2
+	std::cout << "starting values: a: " << a << " b: " << b << " c: " << c << std::endl;
+	Fixed d = (a + b);
+	std::cout << "a + b: " << d << std::endl;
+	d = (a - b);
+	std::cout << "a - b: " << d << std::endl;
+	d = (b * c);
+	std::cout << "b * c: " << d << std::endl;
+	d = (b / c);
+	std::cout << "b / c: " << d << std::endl;
+	d = a + b + c;
+	std::cout << "a + b + c: " << d << std::endl;
+	//test negatives
+	
 }
 
 int main( void ) { 
