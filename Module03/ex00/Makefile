@@ -19,7 +19,7 @@ clean:
 	@rm -f $(OBJS)
 
 fclean: clean
-	@echo "Cleaning Aaaaand...OPEN!"
+	@echo "Cleaning Aaaaand...OPEN"
 	@rm $(NAME)
 
 re: fclean all
