@@ -117,7 +117,10 @@ void	test_arithmetic( void ) {
 int main( void ) { 
 	Fixed a;
 	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed test_float = Fixed(1234.4321f);
 
+
+	std::cout << "TEST FLOAT " << test_float << std::endl;
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;

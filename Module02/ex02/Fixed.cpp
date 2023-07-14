@@ -14,7 +14,7 @@ Fixed::Fixed( const int fpNum ) : _fixed_point_num(0) {
 }
 
 Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
-	this->_fixed_point_num = int (std::roundf(fpNum * (1 << Fixed::_fractionlBits)));
+	this->_fixed_point_num = int (roundf(fpNum * (1 << Fixed::_fractionlBits)));
 }
 
 Fixed::Fixed( const Fixed& to_copy ) {
