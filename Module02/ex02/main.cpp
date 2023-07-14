@@ -28,6 +28,30 @@ void	test_min_max( void ) {
 	std::cout << "max from c & b: " << temp << std::endl;
 	temp = temp.max(d, c);
 	std::cout << "max from d & c: " << temp << std::endl;
+
+	//constants
+	//min tests
+	Fixed const e(2), f(3), g(5.15f), h(5.15f);
+
+	std::cout << std::endl << "starting values: e: " << e << " f: " << f << " g: " << g << " h: " << h << std::endl;
+	temp = temp.min(e, f);
+	std::cout << "min from e & f: " << temp << std::endl;
+	temp = temp.min(f, e);
+	std::cout << "min from f & e: " << temp << std::endl;
+	temp = temp.min(g, f);
+	std::cout << "min from g & f: " << temp << std::endl;
+	temp = temp.min(h, g);
+	std::cout << "min from d & g: " << temp << std::endl;
+
+	//max tests
+	temp = temp.max(e, f);
+	std::cout << std::endl << "max from e & f: " << temp << std::endl;
+	temp = temp.max(f, e);
+	std::cout << "max from f & e: " << temp << std::endl;
+	temp = temp.max(g, f);
+	std::cout << "max from g & f: " << temp << std::endl;
+	temp = temp.max(h, g);
+	std::cout << "max from h & g: " << temp << std::endl;
 }
 
 /** The 6 comparison operators: >, <, >=, <=, == and != **/
