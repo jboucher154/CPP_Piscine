@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:44:47 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/06 13:11:15 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:28:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Zombie*	zombieHorde( int N, std::string name );
 
 int	main( void ) {
 
-	int	count = 10;
+	int	count = 42;
 	Zombie *horde = zombieHorde(count, "Tyson");
 	for (int i = 0; i < count; i++) {
 		horde->announce();
