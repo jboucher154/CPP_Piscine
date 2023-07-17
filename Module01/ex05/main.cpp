@@ -6,13 +6,12 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:59 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 15:47:00 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:48:37 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 #include "Color.hpp"
-#include <iostream>
 #include <ctime>
 
 void	many_complaints( void ) {

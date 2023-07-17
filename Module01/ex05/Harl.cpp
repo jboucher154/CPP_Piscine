@@ -6,13 +6,12 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 16:47:29 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:48:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 #include "Color.hpp"
-#include <iostream>
 
 Harl::Harl( void ) {}
 
