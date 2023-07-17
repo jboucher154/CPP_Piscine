@@ -6,7 +6,7 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:43:45 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/05 16:59:09 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/17 10:36:15 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
+	@echo "Cleaning sed_is_for_losers..."
 	rm $(NAME)
 
 re: fclean all

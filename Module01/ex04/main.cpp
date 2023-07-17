@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 20:08:32 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:45:06 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,27 @@ void	replace_all(char *argv[]) {
 	std::ifstream	inputFile(argv[1]);
 	std::string		outputFName = argv[1]; 
 	outputFName.append(".replace");
-	std::ofstream	outputFile(outputFName);
 	std::string		line;
 
-	if (inputFile.is_open() && outputFile.is_open()) {
-		while (!inputFile.eof()) {
-			std::getline(inputFile, line);
-			process_line(line, argv[2], argv[3]);
-			outputFile << line << std::endl;
+	if (inputFile.is_open()) {
+		std::ofstream	outputFile(outputFName);
+		if (outputFile.is_open())
+		{
+			while (!inputFile.eof()) {
+				std::getline(inputFile, line);
+				process_line(line, argv[2], argv[3]);
+				outputFile << line << std::endl;
+			}
+			outputFile.close();
+		}
+		else {
+			std::cerr << "Error: could not open " << outputFName << " file" << std::endl;
 		}
 		inputFile.close();
-		outputFile.close();
 	}
 	else {
 		if (!inputFile.is_open())
-			std::cerr << "Error: could not open " << argv[1] << " file" << std::endl;
-		if (!outputFile.is_open())
-			std::cerr << "Error: could not open " << outputFName << " file" << std::endl;
+			std::cerr << "Error: could not open " << argv[1] << " file" << std::endl;			
 	}
 }
 
