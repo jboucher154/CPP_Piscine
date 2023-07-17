@@ -6,11 +6,10 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:53 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 20:10:19 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:34:28 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "HumanB.hpp"
 
 HumanB::HumanB( std::string name ) : _name(name), _weapon(NULL) {}

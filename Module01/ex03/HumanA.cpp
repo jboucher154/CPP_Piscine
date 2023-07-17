@@ -6,12 +6,11 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:44 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 20:10:25 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:34:33 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include "HumanA.hpp"
+#include "HumanA.hpp"
 
 HumanA::HumanA( std::string name, Weapon &initial_Weapon ) 
 : _name(name), _weapon(initial_Weapon) {}

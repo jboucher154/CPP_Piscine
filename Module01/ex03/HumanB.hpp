@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:57 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 20:10:38 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:33:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HUMAN_B_HPP
 
 # include <string>
+# include <iostream>
 # include "Weapon.hpp"
 
 class HumanB {
