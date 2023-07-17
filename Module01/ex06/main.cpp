@@ -6,13 +6,12 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:47:18 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 20:21:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:51:05 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 #include "Color.hpp"
-#include <iostream>
 
 void	filter( const std::string &filter_level)
 {

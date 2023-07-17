@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:29:51 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 13:54:52 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:50:49 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HARL_HPP
 
 # include <string>
+# include <iostream>
 
 class Harl
 {
