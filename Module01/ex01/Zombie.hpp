@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:02 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 16:00:12 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:26:45 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ZOMBIE_HPP
 
 # include <string>
+# include <iostream>
 
 class Zombie {
 	public:
