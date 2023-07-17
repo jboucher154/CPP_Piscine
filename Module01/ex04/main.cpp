@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/17 10:45:06 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:25:25 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	process_line(std::string &line, std::string const &to_find, std::string con
 	}
 }
 
-void	replace_all(char *argv[]) {
+void	replace_all(std::string fname, std::string to_find, std::string replace_with) {
 	
-	std::ifstream	inputFile(argv[1]);
-	std::string		outputFName = argv[1]; 
+	std::ifstream	inputFile(fname);
+	std::string		outputFName = fname; 
 	outputFName.append(".replace");
 	std::string		line;
 
@@ -39,7 +39,7 @@ void	replace_all(char *argv[]) {
 		{
 			while (!inputFile.eof()) {
 				std::getline(inputFile, line);
-				process_line(line, argv[2], argv[3]);
+				process_line(line, to_find, replace_with);
 				outputFile << line << std::endl;
 			}
 			outputFile.close();
@@ -51,7 +51,7 @@ void	replace_all(char *argv[]) {
 	}
 	else {
 		if (!inputFile.is_open())
-			std::cerr << "Error: could not open " << argv[1] << " file" << std::endl;			
+			std::cerr << "Error: could not open " << fname << " file" << std::endl;			
 	}
 }
 
@@ -61,7 +61,12 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "Error: incorrect input: <filename> <string to find> <string to replace with>" << std::endl;
 		return (1);
 	}
-	else 
-		replace_all(argv);
+	else if (argv[1][0] && argv[2][0] && argv[3][0]) {
+
+		replace_all(argv[1], argv[2], argv[3]);
+	}
+	else {
+		std::cerr << "Error: do not pass empty strings as arguments" << std::endl;
+	}
 	return (0);
 }

@@ -6,14 +6,14 @@
 #    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:43:45 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/17 10:36:15 by jebouche         ###   ########.fr        #
+#    Updated: 2023/07/17 13:13:13 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := sed_is_for_losers
 SRC := main.cpp
 OBJ := $(SRC:.cpp=.o)
-CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 CC := c++
 
 all: $(NAME)
