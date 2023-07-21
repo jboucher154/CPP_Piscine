@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/17 13:27:20 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:42:50 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	replace_all(std::string fname, std::string to_find, std::string replace_wit
 			while (!inputFile.eof()) {
 				std::getline(inputFile, line);
 				process_line(line, to_find, replace_with);
-				outputFile << line << std::endl;
+				outputFile << line;
+				if (!inputFile.eof() && line.back() != '\n')
+					outputFile << std::endl;
 			}
 			outputFile.close();
 		}
