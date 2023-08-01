@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:45:33 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/05 16:08:17 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:36:10 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 
 int	main( void ) {
-	std::string	str = "HI THIS IS BRIAN";
+	std::string	str = "HI THIS IS BRAIN";
 	std::string	*stringPTR = &str;
 	std::string &stringREF = str;
 
