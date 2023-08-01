@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/21 17:42:50 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:16:26 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	process_line(std::string &line, std::string const &to_find, std::string con
 	while (position != std::string::npos) {
 		line.erase(position, to_find.length());
 		line.insert(position, replace_with);
-		position = line.find(to_find);
+		position = line.find(to_find, position + replace_with.length());
 	}
 }
 
@@ -39,10 +39,10 @@ void	replace_all(std::string fname, std::string to_find, std::string replace_wit
 		{
 			while (!inputFile.eof()) {
 				std::getline(inputFile, line);
+				if (!inputFile.eof())
+					line.append("\n");
 				process_line(line, to_find, replace_with);
 				outputFile << line;
-				if (!inputFile.eof() && line.back() != '\n')
-					outputFile << std::endl;
 			}
 			outputFile.close();
 		}
