@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/01 15:16:26 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:00:36 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #include <fstream>
 #include <string>
 
-void	process_line(std::string &line, std::string const &to_find, std::string const &replace_with) {
+void	process_file(std::string &file, std::string const &to_find, std::string const &replace_with) {
 
 	size_t	position;
 	
-	position = line.find(to_find);
+	position = file.find(to_find);
 	while (position != std::string::npos) {
-		line.erase(position, to_find.length());
-		line.insert(position, replace_with);
-		position = line.find(to_find, position + replace_with.length());
+		file.erase(position, to_find.length());
+		file.insert(position, replace_with);
+		position = file.find(to_find, position + replace_with.length());
 	}
 }
 
@@ -32,6 +32,7 @@ void	replace_all(std::string fname, std::string to_find, std::string replace_wit
 	std::string		outputFName = fname; 
 	outputFName.append(".replace");
 	std::string		line;
+	std::string		file_contents;
 
 	if (inputFile.is_open()) {
 		std::ofstream	outputFile(outputFName);
@@ -41,9 +42,10 @@ void	replace_all(std::string fname, std::string to_find, std::string replace_wit
 				std::getline(inputFile, line);
 				if (!inputFile.eof())
 					line.append("\n");
-				process_line(line, to_find, replace_with);
-				outputFile << line;
+				file_contents.append(line);
 			}
+			process_file(file_contents, to_find, replace_with);
+			outputFile << file_contents;
 			outputFile.close();
 		}
 		else {
@@ -63,7 +65,7 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "Error: incorrect input: <filename> <string to find> <string to replace with>" << std::endl;
 		return (1);
 	}
-	else if (argv[1][0] && argv[2][0] && argv[3][0]) {
+	else if (argv[1][0] && argv[2][0]) {
 
 		replace_all(argv[1], argv[2], argv[3]);
 	}
