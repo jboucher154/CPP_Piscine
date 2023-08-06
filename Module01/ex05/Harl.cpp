@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:52 by jebouche          #+#    #+#             */
-/*   Updated: 2023/07/17 10:48:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:38:12 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 #include "Color.hpp"
 
-Harl::Harl( void ) {}
+Harl::Harl( void ) {
+	std::cout <<  "Hiiiiiiiii!" << std::endl;
+}
 
-Harl::~Harl( void ) {}
+Harl::~Harl( void ) {
+	std::cout <<  "Byyyyyyeee!" << std::endl;
+}
 
 void	Harl::complain( std::string level) {
 	void (Harl::*c[4]) (void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
