@@ -6,7 +6,7 @@
 /*   By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:19:04 by jebouche          #+#    #+#             */
-/*   Updated: 2023/08/04 10:00:36 by jebouche         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:21:58 by jebouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	replace_all(std::string fname, std::string to_find, std::string replace_wit
 		inputFile.close();
 	}
 	else {
-		if (!inputFile.is_open())
-			std::cerr << "Error: could not open " << fname << " file" << std::endl;			
+		std::cerr << "Error: could not open " << fname << " file" << std::endl;			
 	}
 }
 

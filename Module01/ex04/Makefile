@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jebouche <jebouche@student.42.fr>          +#+  +:+       +#+         #
+#    By: jebouche <jebouche@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 15:43:45 by jebouche          #+#    #+#              #
-#    Updated: 2023/07/17 13:13:13 by jebouche         ###   ########.fr        #
+#    Updated: 2023/08/06 14:27:32 by jebouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ run_test: $(NAME)
 
 remove_tests:
 	@echo "Removing test files..."
-	@rm -f test_file0.txt.replace test_file1.txt.replace whiskers.txt.replace
+	@rm -f test_file0.txt.replace test_file1.txt.replace whiskers.txt.replace nope_file.txt
 
 clean:
 	@echo "Cleaning object files..."
