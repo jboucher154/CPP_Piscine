@@ -8,6 +8,7 @@ void	test_min_max( void ) {
 	Fixed a(1), b(2), c(3), d(3);
 
 	Fixed temp;
+	std::cout << "NON CONST\n";
 	std::cout << "starting values: a: " << a << " b: " << b << " c: " << c << "d: " << d << std::endl;
 	//min tests
 	temp = temp.min(a, b);
@@ -30,6 +31,7 @@ void	test_min_max( void ) {
 	std::cout << "max from d & c: " << temp << std::endl;
 
 	//constants
+	std::cout << "CONST\n";
 	//min tests
 	Fixed const e(2), f(3), g(5.15f), h(5.15f);
 
@@ -97,12 +99,14 @@ void	test_arithmetic( void ) {
 	std::cout << "b * c: " << d << std::endl;
 	d = (b / c);
 	std::cout << "b / c: " << d << std::endl;
-	d = a + b + c;
+	d = (a + b + c);
 	std::cout << "a + b + c: " << d << std::endl;
 	//test negatives
 	
 	Fixed e(-1), f(-6), g(-42);
 
+	std::cout << "starting values: e: " << e << " f: " << f << " g: " << g << std::endl;
+	d = (e + f);
 	std::cout << "e + f: " << d << std::endl;
 	d = (e - f);
 	std::cout << "e - f: " << d << std::endl;
