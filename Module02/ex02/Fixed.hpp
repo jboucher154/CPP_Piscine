@@ -4,6 +4,13 @@
 
 # include <iostream>
 
+/*
+FOR ALL EXERCICES
+	- review from carlos. Need to type case properly for cpp, look up static casting.
+	- make sure that all copy operators and coy assignment operators receive const refs.
+	- cleanup comments from this headers.
+*/
+
 class Fixed
 {
 	public:

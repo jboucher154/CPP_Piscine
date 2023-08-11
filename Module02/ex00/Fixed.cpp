@@ -12,7 +12,7 @@ Fixed::Fixed( void ) : _fixed_point_num(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed( Fixed& to_copy ) {
+Fixed::Fixed(const Fixed& to_copy ) {
 	std::cout << "Copy constructor called" << std::endl;
 	this->_fixed_point_num = to_copy.getRawBits();
 }
@@ -25,7 +25,7 @@ Fixed::~Fixed( void ) {
 
 /* Operator Overloads */
 
-Fixed& Fixed::operator = ( Fixed& to_copy) {
+Fixed& Fixed::operator = (const Fixed& to_copy) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->_fixed_point_num = to_copy.getRawBits();
 	return (*this);

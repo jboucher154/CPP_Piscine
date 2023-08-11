@@ -6,9 +6,9 @@ class Fixed
 {
 	public:
 		Fixed( void );
-		Fixed( Fixed& to_copy );
+		Fixed( const Fixed& to_copy );
 		~Fixed( void );
-		Fixed &operator = ( Fixed& to_copy);
+		Fixed &operator = ( const Fixed& to_copy);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );

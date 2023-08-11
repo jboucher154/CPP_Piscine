@@ -20,7 +20,7 @@ Fixed::Fixed( const int iNum ) : _fixed_point_num(0) {
 
 Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixed_point_num = int (std::roundf(fpNum * (1 << Fixed::_fractionlBits)));
+	this->_fixed_point_num = int (std::roundf(fpNum * static_cast<float>((1 << Fixed::_fractionlBits))));
 }
 
 Fixed::Fixed( const Fixed& to_copy ) {
@@ -38,7 +38,8 @@ Fixed::~Fixed( void ) {
 
 Fixed& Fixed::operator = ( const Fixed& to_copy ) {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_fixed_point_num = to_copy.getRawBits();
+	if (this != &to_copy)
+		this->_fixed_point_num = to_copy.getRawBits();
 	return (*this);
 }
 
