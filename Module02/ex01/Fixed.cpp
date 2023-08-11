@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 
+/* Initialize Class Members */
+
 const int Fixed::_fractionlBits = 8;
 
 /* CONSTRUCTORS */
@@ -11,9 +13,9 @@ Fixed::Fixed( void ) : _fixed_point_num(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed( const int fpNum ) : _fixed_point_num(0) {
+Fixed::Fixed( const int iNum ) : _fixed_point_num(0) {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixed_point_num = (fpNum << Fixed::_fractionlBits);
+	this->_fixed_point_num = (iNum << Fixed::_fractionlBits);
 }
 
 Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
@@ -57,7 +59,7 @@ void	Fixed::setRawBits( const int raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float(this->_fixed_point_num) / (1 << Fixed::_fractionlBits)); //rounding issues?
+	return (float(this->_fixed_point_num) / (1 << Fixed::_fractionlBits));
 }
 
 int		Fixed::toInt( void ) const {

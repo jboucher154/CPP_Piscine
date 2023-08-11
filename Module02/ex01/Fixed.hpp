@@ -9,7 +9,7 @@ class Fixed
 	public:
 		Fixed( void );
 		Fixed( const Fixed& to_copy );
-		Fixed( const int fpNum );
+		Fixed( const int iNum );
 		Fixed( const float fpNum);
 		~Fixed( void );
 
