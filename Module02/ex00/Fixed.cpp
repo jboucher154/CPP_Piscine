@@ -2,6 +2,8 @@
 #include "Fixed.hpp"
 #include <iostream>
 
+/* Initialize Class Memebers */
+
 const int Fixed::_fractionlBits = 8;
 
 /* Constructors */

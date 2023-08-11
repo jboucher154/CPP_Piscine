@@ -65,4 +65,3 @@ float	Fixed::toFloat( void ) const {
 int		Fixed::toInt( void ) const {
 	return (this->_fixed_point_num >> Fixed::_fractionlBits);
 }
-
