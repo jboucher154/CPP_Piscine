@@ -6,7 +6,6 @@ class Fixed
 {
 	public:
 		Fixed( void );
-		Fixed( int fpNum ); 
 		Fixed( Fixed& to_copy );
 		~Fixed( void );
 		Fixed &operator = ( Fixed& to_copy);

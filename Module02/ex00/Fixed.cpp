@@ -10,10 +10,6 @@ Fixed::Fixed( void ) : _fixed_point_num(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed( int fpNum ) : _fixed_point_num(fpNum) {
-	std::cout << "Paramaterized constructor called" << std::endl;
-}
-
 Fixed::Fixed( Fixed& to_copy ) {
 	std::cout << "Copy constructor called" << std::endl;
 	this->_fixed_point_num = to_copy.getRawBits();
