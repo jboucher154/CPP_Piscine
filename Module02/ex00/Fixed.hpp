@@ -8,7 +8,7 @@ class Fixed
 		Fixed( void );
 		Fixed( const Fixed& to_copy );
 		~Fixed( void );
-		Fixed &operator = ( const Fixed& to_copy);
+		Fixed &operator=( const Fixed& to_copy);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );

@@ -20,7 +20,7 @@ Fixed::Fixed( const int iNum ) : _fixed_point_num(0) {
 
 Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixed_point_num = int (std::roundf(fpNum * static_cast<float>((1 << Fixed::_fractionlBits))));
+	this->_fixed_point_num = static_cast<int>(std::roundf(fpNum * static_cast<float>((1 << Fixed::_fractionlBits))));
 }
 
 Fixed::Fixed( const Fixed& to_copy ) {
@@ -60,7 +60,7 @@ void	Fixed::setRawBits( const int raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float(this->_fixed_point_num) / (1 << Fixed::_fractionlBits));
+	return (static_cast<float>(this->_fixed_point_num) / static_cast<float>(1 << Fixed::_fractionlBits));
 }
 
 int		Fixed::toInt( void ) const {

@@ -13,7 +13,7 @@ class Fixed
 		Fixed( const float fpNum);
 		~Fixed( void );
 
-		Fixed&	operator = ( const Fixed& to_copy );
+		Fixed&	operator=( const Fixed& to_copy );
 
 		int		getRawBits( void ) const;
 		void	setRawBits( const int raw );

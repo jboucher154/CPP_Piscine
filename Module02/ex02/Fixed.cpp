@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 
+/* Initialize Class Members */
+
 const int Fixed::_fractionlBits = 8;
 
 /* CONSTRUCTORS */
@@ -14,7 +16,7 @@ Fixed::Fixed( const int fpNum ) : _fixed_point_num(0) {
 }
 
 Fixed::Fixed( const float fpNum) : _fixed_point_num(0) { 
-	this->_fixed_point_num = int (roundf(fpNum * (1 << Fixed::_fractionlBits)));
+	this->_fixed_point_num = static_cast<int>(std::roundf(fpNum * static_cast<float>((1 << Fixed::_fractionlBits))));
 }
 
 Fixed::Fixed( const Fixed& to_copy ) {
@@ -81,7 +83,7 @@ Fixed Fixed::operator - ( const Fixed& rhs) {
 
 Fixed Fixed::operator * ( const Fixed& rhs) {
 	Fixed res;
-	res._fixed_point_num = ((int64_t)this->_fixed_point_num  * (int64_t)rhs.getRawBits()) >> Fixed::_fractionlBits;
+	res._fixed_point_num = (static_cast<int64_t>(this->_fixed_point_num)  * static_cast<int64_t>(rhs.getRawBits())) >> Fixed::_fractionlBits;
 	return (res);
 }
 
@@ -128,7 +130,7 @@ void	Fixed::setRawBits( const int raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float(this->_fixed_point_num) / (1 << Fixed::_fractionlBits));
+	return (static_cast<float>(this->_fixed_point_num) / static_cast<float>(1 << Fixed::_fractionlBits));
 }
 
 int		Fixed::toInt( void ) const {
