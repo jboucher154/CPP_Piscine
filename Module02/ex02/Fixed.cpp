@@ -31,63 +31,63 @@ Fixed::~Fixed( void ) {
 
 /* OPERATOR OVERLOADERS */
 
-Fixed& Fixed::operator = (const Fixed& to_copy) {
+Fixed& Fixed::operator=(const Fixed& to_copy) {
 	this->_fixed_point_num = to_copy.getRawBits();
 	return (*this);
 }
 
-std::ostream&	operator << (std::ostream& output_stream, const Fixed& to_print) {
+std::ostream&	operator<<(std::ostream& output_stream, const Fixed& to_print) {
 	output_stream << to_print.toFloat();
 	return (output_stream);
 }
 
 /** The 6 comparison operators: >, <, >=, <=, == and != **/
 
-bool	Fixed::operator > (const Fixed& rhs) {
+bool	Fixed::operator>(const Fixed& rhs) {
 	return (this->_fixed_point_num > rhs.getRawBits());
 }
 
-bool	Fixed::operator < (const Fixed& rhs) {
+bool	Fixed::operator<(const Fixed& rhs) {
 	return (this->_fixed_point_num < rhs.getRawBits());
 }
 
-bool	Fixed::operator >= (const Fixed& rhs) {
+bool	Fixed::operator>=(const Fixed& rhs) {
 	return (this->_fixed_point_num >= rhs.getRawBits());
 }
 
-bool	Fixed::operator <= (const Fixed& rhs) {
+bool	Fixed::operator<=(const Fixed& rhs) {
 	return (this->_fixed_point_num <= rhs.getRawBits());
 }
 
-bool	Fixed::operator == (const Fixed& rhs) {
+bool	Fixed::operator==(const Fixed& rhs) {
 	return (this->_fixed_point_num == rhs.getRawBits());
 }
 
-bool	Fixed::operator != (const Fixed& rhs) {
+bool	Fixed::operator!=(const Fixed& rhs) {
 	return (this->_fixed_point_num != rhs.getRawBits());
 }
 
 /** The 4 arithmetic operators: +, -, *, and / **/
 
-Fixed Fixed::operator + ( const Fixed& rhs) {
+Fixed Fixed::operator+( const Fixed& rhs) {
 	Fixed res;
 	res._fixed_point_num =  this->_fixed_point_num + rhs.getRawBits();
 	return (res);
 }
 
-Fixed Fixed::operator - ( const Fixed& rhs) {
+Fixed Fixed::operator-( const Fixed& rhs) {
 	Fixed res;
 	res._fixed_point_num = this->_fixed_point_num - rhs.getRawBits();
 	return (res);
 }
 
-Fixed Fixed::operator * ( const Fixed& rhs) {
+Fixed Fixed::operator*( const Fixed& rhs) {
 	Fixed res;
 	res._fixed_point_num = (static_cast<int64_t>(this->_fixed_point_num)  * static_cast<int64_t>(rhs.getRawBits())) >> Fixed::_fractionlBits;
 	return (res);
 }
 
-Fixed Fixed::operator / ( const Fixed& rhs) {
+Fixed Fixed::operator/( const Fixed& rhs) {
 	Fixed res;
 	res._fixed_point_num = ((int64_t)this->_fixed_point_num * (1 << Fixed::_fractionlBits)) / (int64_t)rhs.getRawBits();
 	return (res);
@@ -95,24 +95,24 @@ Fixed Fixed::operator / ( const Fixed& rhs) {
 
 /** The 4 increment/decrement (prefix and postfix **/
 
-Fixed&	Fixed::operator ++ ( void ) {
+Fixed&	Fixed::operator++( void ) {
 	this->_fixed_point_num += 1;
 	return (*this);
 }
 
-Fixed	Fixed::operator ++ ( int ) {
+Fixed	Fixed::operator++( int ) {
 	Fixed temp = *this;
 
 	this->_fixed_point_num += 1;
 	return (temp);
 }
 
-Fixed&	Fixed::operator -- ( void ) {
+Fixed&	Fixed::operator--( void ) {
 	this->_fixed_point_num -= 1;
 	return (*this);
 }
 
-Fixed	Fixed::operator -- ( int ) {
+Fixed	Fixed::operator--( int ) {
 	Fixed temp(*this);
 
 	this->_fixed_point_num -= 1;
