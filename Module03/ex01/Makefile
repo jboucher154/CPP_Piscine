@@ -20,7 +20,7 @@ clean:
 
 fclean: clean
 	@echo "Cleaning Serena_my_love"
-	@rm $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
