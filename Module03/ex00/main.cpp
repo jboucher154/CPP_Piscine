@@ -3,12 +3,6 @@
 
 int	main( void ) {
 
-	// ClapTrap	test; //inaccessable by design
-
-	// ClapTrap test [2] = {ClapTrap("Testy"), ClapTrap("Two")};
-	// test[0].attack("box");
-	// test[1].attack("cube");
-
 	ClapTrap test = ClapTrap("Clarence");
 	ClapTrap test2 = ClapTrap("Victor");
 	ClapTrap test3 = ClapTrap(test2);

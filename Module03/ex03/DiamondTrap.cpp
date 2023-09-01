@@ -5,10 +5,11 @@
 /* CONSTRUCTORS */
 
 DiamondTrap::DiamondTrap( void ) 
-: ClapTrap("default_clap_name"), ScavTrap("default"), FragTrap("default"), name_("default") {
+: ScavTrap("default"), FragTrap("default"), name_("default") {
 	std::cout << COLOR_BRIGHT_YELLOW;
 	std::cout << "DiamondTrap default constructor called" << std::endl;
 	std::cout << COLOR_RESET;
+	this->ClapTrap::name_ = "default_clap_name";
 	this->hit_points_ = this->FragTrap::hit_points_;
 	this->energy_points_ = this->ScavTrap::energy_points_;
 	this->attack_damage_ = this->FragTrap::attack_damage_;
