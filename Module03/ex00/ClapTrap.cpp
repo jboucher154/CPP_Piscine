@@ -4,7 +4,8 @@
 /* CONSTRUCTORS */
 
 //set as private
-ClapTrap::ClapTrap( void ) {
+ClapTrap::ClapTrap( void ) 
+: name_("default"), hit_points_(10), energy_points_(10), attack_damage_(0){
 	std::cout << "Default Constructor Called" << std::endl;
 }
 
@@ -14,58 +15,66 @@ ClapTrap::ClapTrap( const ClapTrap& to_copy ) {
 }
 
 ClapTrap::ClapTrap( std::string name ) 
-: _name(name), _hit_points(10), _energy_points(10), _attack_damage(0) {
+: name_(name), hit_points_(10), energy_points_(10), attack_damage_(0) {
 	std::cout << "Parameterized Constructor Called" << std::endl;
 }
-/* DECONSTRUCTOR */
+/* DESTRUCTOR */
 
 ClapTrap::~ClapTrap( void ) {
-	std::cout << "Deconstructor Called" << std::endl;
+	std::cout << "Destructor Called" << std::endl;
 }
 
 /* OPERATOR OVERLOADS */
 
-ClapTrap&	ClapTrap::operator = ( const ClapTrap& to_copy ) {
+ClapTrap&	ClapTrap::operator=( const ClapTrap& to_copy ) {
 	std::cout << "Assignment operator Called" << std::endl;
-	this->_name = to_copy._name; //check membory on this
-	this->_hit_points = to_copy._hit_points;
-	this->_energy_points = to_copy._energy_points;
-	this->_attack_damage = to_copy._attack_damage;
+	this->name_ = to_copy.name_;
+	this->hit_points_ = to_copy.hit_points_;
+	this->energy_points_ = to_copy.energy_points_;
+	this->attack_damage_ = to_copy.attack_damage_;
 	return (*this);
 }
 
 /* PUBLIC METHODS */
 
 void	ClapTrap::attack( const std::string& target ) {
-	if (this->_energy_points == 0)
-		std::cout  << "ClapTrap " << this->_name << " does not have enough energy to attack!" << std::endl;
-	else if (this->_hit_points <= 0) {
-		std::cout  << "ClapTrap " << this->_name << " is dead!" << std::endl;
+	if (this->energy_points_ == 0) {
+		std::cout  << "ClapTrap " << this->name_ << " does not have enough energy to attack!" << std::endl;
+	}
+	else if (this->hit_points_ <= 0) {
+		std::cout  << "ClapTrap " << this->name_ << " is dead!" << std::endl;
 	}
 	else {
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attack_damage << " pts of damage!" << std::endl;
-		this->_energy_points -= 1;
+		std::cout << "ClapTrap " << this->name_ << " attacks " << target << ", causing " << this->attack_damage_ << " pts of damage!" << std::endl;
+		this->energy_points_ -= 1;
 	}
 }
+
 void	ClapTrap::takeDamage( unsigned int amount ) {
-	if (this->_hit_points <= 0) {
-		std::cout  << "ClapTrap " << this->_name << " is already dead!" << std::endl;
-		return ;
+	if (this->hit_points_ <= 0) {
+		std::cout  << "ClapTrap " << this->name_ << " is already dead!" << std::endl;
 	}
-	std::cout << "ClapTrap " << this->_name << " receives " << amount << " damage!" << std::endl;
-	this->_hit_points -= amount;
-	std::cout << "ClapTrap " << this->_name << " now has " << this->_hit_points << " hit points" << std::endl;
-}
-void	ClapTrap::beRepaired( unsigned int amount ) {
-	if (this->_energy_points <= 0)
-		std::cout << "ClapTrap " << this->_name << " does not enough energy to repair itself!" << std::endl;
-	else if (this->_hit_points <= 0) {
-		std::cout  << "ClapTrap " << this->_name << " is dead!" << std::endl;
+	else if (this->energy_points_ <= 0) {
+		std::cout  << "ClapTrap " << this->name_ << " is out of energy!" << std::endl;
 	}
 	else {
-		std::cout << "ClapTrap " << this->_name << " repairs itself with " << amount << " hit points" << std::endl;
-		std::cout << "ClapTrap " << this->_name << " now has " << this->_hit_points << " hit points" << std::endl;
-		this->_hit_points += amount;
-		this->_energy_points -= 1;
+		std::cout << "ClapTrap " << this->name_ << " receives " << amount << " damage!" << std::endl;
+		this->hit_points_ -= amount;
+		std::cout << "ClapTrap " << this->name_ << " now has " << this->hit_points_ << " hit points" << std::endl;
+	}
+}
+
+void	ClapTrap::beRepaired( unsigned int amount ) {
+	if (this->energy_points_ <= 0) {
+		std::cout << "ClapTrap " << this->name_ << " does not enough energy to repair itself!" << std::endl;
+	}
+	else if (this->hit_points_ <= 0) {
+		std::cout  << "ClapTrap " << this->name_ << " is dead!" << std::endl;
+	}
+	else {
+		std::cout << "ClapTrap " << this->name_ << " repairs itself with " << amount << " hit points" << std::endl;
+		std::cout << "ClapTrap " << this->name_ << " now has " << this->hit_points_ << " hit points" << std::endl;
+		this->hit_points_ += amount;
+		this->energy_points_ -= 1;
 	}
 }

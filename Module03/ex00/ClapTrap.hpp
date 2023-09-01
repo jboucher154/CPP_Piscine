@@ -12,7 +12,7 @@ class ClapTrap
 		ClapTrap( std::string name );
 		~ClapTrap( void );
 
-		ClapTrap&	operator = ( const ClapTrap& to_copy );
+		ClapTrap&	operator=( const ClapTrap& to_copy );
 
 		void	attack( const std::string& target );
 		void	takeDamage( unsigned int amount );
@@ -21,10 +21,10 @@ class ClapTrap
 	private:
 		ClapTrap( void );
 
-		std::string		_name;
-		int	_hit_points;
-		int	_energy_points;
-		int	_attack_damage;
+		std::string		name_;
+		int				hit_points_;
+		int				energy_points_;
+		int				attack_damage_;
 };
 
 #endif
