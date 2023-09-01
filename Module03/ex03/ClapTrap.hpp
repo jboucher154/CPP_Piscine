@@ -23,9 +23,10 @@ class ClapTrap
 		int				hit_points_;
 		int				energy_points_;
 		int				attack_damage_;
+		
+		ClapTrap( void );
 
 	private:
-		ClapTrap( void );
 
 };
 

@@ -4,7 +4,7 @@
 
 # include "ClapTrap.hpp"
 
-class	FragTrap : public ClapTrap {
+class	FragTrap : virtual public ClapTrap {
 
 	public:
 		FragTrap( const FragTrap& to_copy);
