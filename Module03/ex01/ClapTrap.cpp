@@ -16,12 +16,13 @@ ClapTrap::ClapTrap( const ClapTrap& to_copy ) {
 
 ClapTrap::ClapTrap( std::string name ) 
 : name_(name), hit_points_(10), energy_points_(10), attack_damage_(0) {
-	std::cout << "Parameterized Constructor Called" << std::endl;
+	std::cout << "ClapTrap Parameterized Constructor Called" << std::endl;
 }
+
 /* DESTRUCTOR */
 
 ClapTrap::~ClapTrap( void ) {
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "ClapTrap Destructor Called" << std::endl;
 }
 
 /* OPERATOR OVERLOADS */
@@ -60,6 +61,9 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 	else {
 		std::cout << "ClapTrap " << this->name_ << " receives " << amount << " damage!" << std::endl;
 		this->hit_points_ -= amount;
+		if (this->hit_points_ < 0) {
+			this->hit_points_ = 0;
+		}
 		std::cout << "ClapTrap " << this->name_ << " now has " << this->hit_points_ << " hit points" << std::endl;
 	}
 }
