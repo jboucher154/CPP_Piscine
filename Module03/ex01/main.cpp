@@ -33,6 +33,7 @@ int	main( void ) {
 	}
 
 	/* ScavTrap Tests*/
+	std::cout << std::endl;
 	std::cout << "ScavTrap Tests" << std::endl;
 
 	ScavTrap testScav1("Barry");

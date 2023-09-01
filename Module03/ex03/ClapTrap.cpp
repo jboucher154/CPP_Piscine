@@ -77,8 +77,8 @@ void	ClapTrap::beRepaired( unsigned int amount ) {
 	}
 	else {
 		std::cout << "ClapTrap " << this->name_ << " repairs itself with " << amount << " hit points" << std::endl;
-		std::cout << "ClapTrap " << this->name_ << " now has " << this->hit_points_ << " hit points" << std::endl;
 		this->hit_points_ += amount;
+		std::cout << "ClapTrap " << this->name_ << " now has " << this->hit_points_ << " hit points" << std::endl;
 		this->energy_points_ -= 1;
 	}
 }
