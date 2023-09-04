@@ -2,11 +2,11 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+
 class	Cat : public Animal
 {
 	public:
 		Cat( void );
-		// Cat( /*add parameters*/ );
 		Cat( const Cat& to_copy );
 
 		~Cat( void );

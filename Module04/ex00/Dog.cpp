@@ -1,36 +1,37 @@
 
 #include "Dog.hpp"
-
+#include <iostream>
  
 /* CONSTRUCTORS */
 
-Dog::Dog( void ) {
-	/* default constructor */
+Dog::Dog( void ) : Animal() {
+	std::cout << "Dog default constructor called" << std::endl;
+	this->Animal::type_ = "Dog";
 }
 	
- Dog::Dog( /*add parameters*/ ) {
-	/* parameterized constructor */
+Dog::Dog( const Dog& to_copy ) : Animal() {
+	std::cout << "Dog copy constructor called" << std::endl;
+	*this = to_copy;
 }
 	
- Dog::Dog( const Dog& to_copy ) {
-	/* copy constructor */
-}
-	
- 
 /* DESTRUCTOR */
 
 Dog::~Dog( void ) {
-	/* destructor */
+	std::cout << "Dog destructor called" << std::endl;
 }
-	
  
 /* OPERATOR OVERLOADS */
 
 Dog&	Dog::operator=( const Dog& to_copy ) {
-	/* copy assignment operator overload */
+	std::cout << "Dog copy assignment operator overload called" << std::endl;
+	this->Animal::type_ = to_copy.getType();
+	return (*this);
 }
-	
 
 /* CLASS PUBLIC METHODS */
+
+void		Dog::makeSound( void ) const {
+	std::cout << "Ruff" << std::endl;
+}
 
 /* CLASS PRIVATE METHODS */

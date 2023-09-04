@@ -4,15 +4,11 @@
  
 /* CONSTRUCTORS */
 
-Animal::Animal( void ) : type_("Unicorn") {
+Animal::Animal( void ) : type_("Snake") {
 	std::cout << "Animal default constructor called" << std::endl;
 }
 	
- Animal::Animal( std::string type ) : type_(type) {
-	std::cout << "Animal parameterized constructor called" << std::endl;
-}
-	
- Animal::Animal( const Animal& to_copy ) {
+Animal::Animal( const Animal& to_copy ) {
 	std::cout << "Animal copy constructor called" << std::endl;
 	*this = to_copy;
 }
@@ -38,17 +34,8 @@ std::string	Animal::getType( void ) const {
 	return (this->type_);
 }
 
-void	Animal::setType( std::string new_type ) {
-	if (new_type.empty())
-	{
-		std::cout << "Error: type cannot be empty. Type not changed." << std::endl;
-		return ;
-	}
-	this->type_ = new_type;
-}
-
-void	Animal::makeSound( void ) const {
-	std::cout << "Neigh" << std::endl;
+void		Animal::makeSound( void ) const {
+	std::cout << "Sssssssssssss" << std::endl;
 }
 
 /* CLASS PRIVATE METHODS */

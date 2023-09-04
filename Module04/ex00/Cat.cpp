@@ -4,37 +4,33 @@
  
 /* CONSTRUCTORS */
 
-Cat::Cat( void ) {
+Cat::Cat( void ) : Animal() {
 	std::cout << "Cat default constructor called" << std::endl;
 	this->Animal::type_ = "Cat";
 }
 	
-// Cat::Cat( /*add parameters*/ ) {
-// 	/* parameterized constructor */
-// }
-	
-Cat::Cat( const Cat& to_copy ) {
-	/* copy constructor */
+Cat::Cat( const Cat& to_copy ) : Animal() {
+	std::cout << "Cat copy constructor called" << std::endl;
+	*this = to_copy;
 }
-	
- 
+
 /* DESTRUCTOR */
 
 Cat::~Cat( void ) {
-	/* destructor */
+	std::cout << "Cat destructor called" << std::endl;
 }
-	
- 
+
 /* OPERATOR OVERLOADS */
 
 Cat&	Cat::operator=( const Cat& to_copy ) {
-	/* copy assignment operator overload */
+	std::cout << "Cat copy assignment operator overload called" << std::endl;
+	this->Animal::type_ = to_copy.getType();
+	return (*this);
 }
-	
 
 /* CLASS PUBLIC METHODS */
 
-void		makeSound( void ) const {
+void		Cat::makeSound( void ) const {
 	std::cout << "Meow" << std::endl;
 }
 
