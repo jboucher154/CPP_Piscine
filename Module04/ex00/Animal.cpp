@@ -33,6 +33,7 @@ Animal&	Animal::operator=( const Animal& to_copy ) {
 }
 	
 /* CLASS PUBLIC METHODS */
+
 std::string	Animal::getType( void ) const {
 	return (this->type_);
 }

@@ -19,9 +19,12 @@ class	Animal
 		void		setType( std::string new_type );
 		void		makeSound( void ) const;
 		
+	protected:
+		std::string	type_;
+	
 	private:
 		/* PRIVATE METHODS AND MEMBERS */
-		std::string	type_;
+
 };
 
 #endif

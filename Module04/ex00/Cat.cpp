@@ -1,18 +1,19 @@
 
 #include "Cat.hpp"
-
+#include <iostream>
  
 /* CONSTRUCTORS */
 
 Cat::Cat( void ) {
-	/* default constructor */
+	std::cout << "Cat default constructor called" << std::endl;
+	this->Animal::type_ = "Cat";
 }
 	
- Cat::Cat( /*add parameters*/ ) {
-	/* parameterized constructor */
-}
+// Cat::Cat( /*add parameters*/ ) {
+// 	/* parameterized constructor */
+// }
 	
- Cat::Cat( const Cat& to_copy ) {
+Cat::Cat( const Cat& to_copy ) {
 	/* copy constructor */
 }
 	
@@ -32,5 +33,9 @@ Cat&	Cat::operator=( const Cat& to_copy ) {
 	
 
 /* CLASS PUBLIC METHODS */
+
+void		makeSound( void ) const {
+	std::cout << "Meow" << std::endl;
+}
 
 /* CLASS PRIVATE METHODS */
