@@ -2,6 +2,7 @@
 # define DOG_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class	Dog : public Animal
 {
@@ -14,10 +15,11 @@ class	Dog : public Animal
 		Dog&	operator=( const Dog& to_copy );
 
 		/* PUBLIC METHODS */
-		void		makeSound( void ) const;
+		void	makeSound( void ) const;
+		void	printBrainAddress( void ) const;
 		
 	private:
-		/* PRIVATE METHODS AND MEMBERS */
+		Brain	*brain_;
 };
 
 #endif

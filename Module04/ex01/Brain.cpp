@@ -29,7 +29,7 @@ Brain&	Brain::operator=( const Brain& to_copy ) {
 	if (this != &to_copy)
 	{
 		for (int i = 0; i < 100; i++)
-		this->ideas_[i] = to_copy.ideas_[i];
+			this->ideas_[i] = to_copy.ideas_[i];
 	}
 	return (*this);
 }
