@@ -1,11 +1,11 @@
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
-class	WrongCat 
+#include "WrongAnimal.hpp"
+class	WrongCat : public WrongAnimal
 {
 	public:
 		WrongCat( void );
-		WrongCat( /*add parameters*/ );
 		WrongCat( const WrongCat& to_copy );
 
 		~WrongCat( void );
@@ -13,7 +13,8 @@ class	WrongCat
 		WrongCat&	operator=( const WrongCat& to_copy );
 
 		/* PUBLIC METHODS */
-		
+		void		makeSound( void ) const;
+
 	private:
 		/* PRIVATE METHODS AND MEMBERS */
 };

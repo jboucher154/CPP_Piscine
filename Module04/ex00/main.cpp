@@ -4,6 +4,8 @@
 #include "Dog.hpp"
 #include <iostream>
 #include "Color.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 void	animalTests( void ) {
 
@@ -60,34 +62,82 @@ void	dogTests( void ) {
 }
 
 void	wrongAnimalTest( void ) {
+	std::cout << "WRONG ANIMAL CLASS TESTS\n";
 
+	WrongAnimal	wrongAnimal;
+	WrongAnimal	wrongAnimal_1 = wrongAnimal;
+	WrongAnimal	wrongAnimal_2;
+	wrongAnimal_2 = wrongAnimal;
+
+	wrongAnimal.makeSound();
+	wrongAnimal_1.makeSound();
+	wrongAnimal_2.makeSound();
+
+	std::cout << "animal type is: " << wrongAnimal.getType() << std::endl;
+
+	std::cout << "WRONG ANIMAL CLASS TESTS ENDED\n";
 }
 
 void	wrongCatTest( void ) {
-	
+	std::cout << "WRONG CAT CLASS TESTS\n";
+
+	WrongCat	wrongCat;
+	WrongCat	wrongCat_1 = wrongCat;
+	WrongCat	wrongCat_2;
+	wrongCat_2 = wrongCat;
+
+	wrongCat.makeSound();
+	wrongCat_1.makeSound();
+	wrongCat_2.makeSound();
+
+	std::cout << "animal type is: " << wrongCat.getType() << std::endl;
+
+	std::cout << "WRONG CAT CLASS TESTS ENDED\n";
 }
 
 int	main( void ) {
 
 	std::cout << COLOR_BRIGHT_BLUE;
 	animalTests();
-	std::cout << COLOR_BRIGHT_MAGENTA;
+	std::cout << COLOR_BRIGHT_MAGENTA << std::endl;
 	catTests();
-	std::cout << COLOR_BRIGHT_YELLOW;
+	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
 	dogTests();
+	std::cout << COLOR_BRIGHT_GREEN << std::endl;
+	wrongAnimalTest();
+	std::cout << COLOR_BRIGHT_CYAN << std::endl;
+	wrongCatTest();
 	std::cout << COLOR_RESET << std::endl;
 
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
+	std::cout << "TEST FROM SUBJECT: " << std::endl;
+	{
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound();
+		j->makeSound();
+		meta->makeSound();
 
-	delete meta;
-	delete j;
-	delete i;
+		delete meta;
+		delete j;
+		delete i;
+	}
+	{
+		std::cout << "TEST FROM SUBJECT WITH WRONG ANIMAL / CAT: " << std::endl;
+		const WrongAnimal* meta = new WrongAnimal();
+		const Animal* j = new Dog();
+		const WrongAnimal* i = new WrongCat();
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound();
+		j->makeSound();
+		meta->makeSound();
+
+		delete meta;
+		delete j;
+		delete i;
+	}
 	return (0);
 }
