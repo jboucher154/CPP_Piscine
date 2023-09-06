@@ -71,6 +71,8 @@ int	main( void ) {
 	std::cout << COLOR_BRIGHT_GREEN << std::endl;
 	std::cout << "\nTest Requested in Subject: \n";
 
+	// AAnimal wilFail = new AAnimal();
+	
 	AAnimal	*pound[10];
 
 	for (int i = 0; i < 10; i++) {
