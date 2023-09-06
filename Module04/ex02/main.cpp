@@ -54,7 +54,7 @@ void	brainTests( void ) {
 	std::cout << COLOR_RESET << std::endl;
 }
 
-void	testUnallocatedArray( void ) {
+void	testNowAllocateedArray( void ) {
 	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
 	AAnimal *clinic[] = {new Cat(), new Cat(), new Dog(), new Dog(), new Cat(), new Dog()};
 	std::cout << COLOR_RESET << std::endl;
@@ -67,7 +67,7 @@ void	testUnallocatedArray( void ) {
 int	main( void ) {
 
 	brainTests();
-	testUnallocatedArray();
+	testNowAllocateedArray();
 	std::cout << COLOR_BRIGHT_GREEN << std::endl;
 	std::cout << "\nTest Requested in Subject: \n";
 
