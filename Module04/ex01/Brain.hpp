@@ -12,8 +12,6 @@ class	Brain
 		~Brain( void );
 
 		Brain&	operator=( const Brain& to_copy );
-
-		/* PUBLIC METHODS */
 		
 	private:
 		std::string ideas_[100];

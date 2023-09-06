@@ -1,5 +1,5 @@
 
-NAME := Fire
+NAME := AnimalsSomethingSomethingFire
 INCLUDES := Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
 SRCS := main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJS := $(SRCS:.cpp=.o)
@@ -10,7 +10,7 @@ CC := c++
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "Making Fire"
+	@echo "Making AnimalsSomethingSomethingFire"
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) 
 
 %.o: %.cpp $(INCLUDES)
@@ -21,7 +21,7 @@ clean:
 	@rm -f $(OBJS)
 
 fclean: clean
-	@echo "Cleaning Fire"
+	@echo "Cleaning AnimalsSomethingSomethingFire"
 	@rm -f $(NAME)
 
 re: fclean all

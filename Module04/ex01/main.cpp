@@ -37,6 +37,8 @@ void	brainTests( void ) {
 		Dog dog_1 = dog;
 		Dog	dog_2;
 		dog_2 = dog;
+		Dog doggo(dog_1);
+
 
 		dog.makeSound();
 		dog_1.makeSound();
@@ -66,18 +68,23 @@ int	main( void ) {
 	brainTests();
 	testUnallocatedArray();
 	std::cout << COLOR_BRIGHT_GREEN << std::endl;
-	Animal	*pound = new Animal[10];
-	for (int i = 0; 0 < 10; i++) {
+	std::cout << "\nTest Requested in Subject: \n";
+
+	Animal	*pound[10];
+
+	for (int i = 0; i < 10; i++) {
 		if (i < 5) {
 			pound[i] = new Dog();
 		} else {
 			pound[i] = new Cat();
 		}
+		pound[i]->makeSound();
 	}
 	std::cout << COLOR_BRIGHT_CYAN << std::endl;
-
+	for (int i = 0; i < 10; i++) {
+		pound[i]->makeSound();
+		delete pound[i];
+	}
 	std::cout << COLOR_RESET << std::endl;
-
-
 	return (0);
 }

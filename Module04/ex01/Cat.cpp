@@ -12,7 +12,7 @@ Cat::Cat( void ) : Animal() {
 	
 Cat::Cat( const Cat& to_copy ) : Animal() {
 	std::cout << "Cat copy constructor called" << std::endl;
-	this->brain_ = NULL;
+	this->brain_ = new Brain();
 	*this = to_copy;
 }
 
@@ -28,9 +28,7 @@ Cat::~Cat( void ) {
 Cat&	Cat::operator=( const Cat& to_copy ) {
 	std::cout << "Cat copy assignment operator overload called" << std::endl;
 	this->Animal::type_ = to_copy.getType();
-	if (this->brain_)
-		delete this->brain_;
-	this->brain_ = new Brain (*to_copy.brain_);
+	*this->brain_ = *to_copy.brain_;
 	return (*this);
 }
 

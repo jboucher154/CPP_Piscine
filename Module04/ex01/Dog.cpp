@@ -12,7 +12,7 @@ Dog::Dog( void ) : Animal() {
 	
 Dog::Dog( const Dog& to_copy ) : Animal() {
 	std::cout << "Dog copy constructor called" << std::endl;
-	this->brain_ = NULL;
+	this->brain_ = new Brain();
 	*this = to_copy;
 }
 	
@@ -28,9 +28,7 @@ Dog::~Dog( void ) {
 Dog&	Dog::operator=( const Dog& to_copy ) {
 	std::cout << "Dog copy assignment operator overload called" << std::endl;
 	this->Animal::type_ = to_copy.getType();
-	if (this->brain_)
-		delete this->brain_;
-	this->brain_ = new Brain (*to_copy.brain_);
+	*this->brain_ = *to_copy.brain_;
 	return (*this);
 }
 
@@ -44,4 +42,3 @@ void	Dog::printBrainAddress( void ) const {
 	std::cout << "My Brain is located at : " << this->brain_ << std::endl;
 }
 
-/* CLASS PRIVATE METHODS */

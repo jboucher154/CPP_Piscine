@@ -34,6 +34,3 @@ Brain&	Brain::operator=( const Brain& to_copy ) {
 	return (*this);
 }
 
-/* CLASS PUBLIC METHODS */
-
-/* CLASS PRIVATE METHODS */
