@@ -42,4 +42,3 @@ void	Cat::printBrainAddress( void ) const {
 	std::cout << "My Brain is located at : " << this->brain_ << std::endl;
 }
 
-/* CLASS PRIVATE METHODS */
