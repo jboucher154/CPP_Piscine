@@ -24,7 +24,8 @@ Cat::~Cat( void ) {
 
 Cat&	Cat::operator=( const Cat& to_copy ) {
 	std::cout << "Cat copy assignment operator overload called" << std::endl;
-	this->Animal::type_ = to_copy.getType();
+	if (this != &to_copy)
+		this->Animal::type_ = to_copy.getType();
 	return (*this);
 }
 

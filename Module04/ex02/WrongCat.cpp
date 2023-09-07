@@ -24,7 +24,8 @@ WrongCat::~WrongCat( void ) {
 
 WrongCat&	WrongCat::operator=( const WrongCat& to_copy ) {
 	std::cout << "WrongCat copy assignment operator overload called" << std::endl;
-	this->WrongAnimal::type_ = to_copy.getType();
+	if (this != &to_copy)
+		this->WrongAnimal::type_ = to_copy.getType();
 	return (*this);
 }
 

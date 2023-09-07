@@ -14,7 +14,7 @@ class	Cat : public Animal
 		Cat&	operator=( const Cat& to_copy );
 
 		/* PUBLIC METHODS */
-		void		makeSound( void ) const;
+		virtual	void	makeSound( void ) const;
 		
 	private:
 		/* PRIVATE METHODS AND MEMBERS */

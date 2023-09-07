@@ -13,7 +13,7 @@ class	WrongCat : public WrongAnimal
 		WrongCat&	operator=( const WrongCat& to_copy );
 
 		/* PUBLIC METHODS */
-		void		makeSound( void ) const;
+		void	makeSound( void ) const;
 
 	private:
 		/* PRIVATE METHODS AND MEMBERS */

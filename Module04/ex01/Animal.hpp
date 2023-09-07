@@ -14,8 +14,8 @@ class	Animal
 		Animal&	operator=( const Animal& to_copy );
 
 		/* PUBLIC METHODS */
-		std::string	getType( void ) const;
-		virtual void		makeSound( void ) const;
+		std::string		getType( void ) const;
+		virtual void	makeSound( void ) const;
 		
 	protected:
 		std::string	type_;

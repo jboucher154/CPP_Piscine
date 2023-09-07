@@ -15,8 +15,8 @@ class	Dog : public AAnimal
 		Dog&	operator=( const Dog& to_copy );
 
 		/* PUBLIC METHODS */
-		void	makeSound( void ) const;
-		void	printBrainAddress( void ) const;
+		virtual	void	makeSound( void ) const;
+		void			printBrainAddress( void ) const;
 		
 	private:
 		Brain	*brain_;

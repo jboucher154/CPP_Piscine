@@ -59,8 +59,13 @@ void	brainTests( void ) {
 
 void	testUnallocatedArray( void ) {
 	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
-	Animal clinic[] = {Cat(), Cat(), Dog(), Dog(), Cat(), Dog()};
+	Animal *clinic[] = {new Cat(), new Cat(), new Dog(), new Dog(), new Cat(), new Dog()};
 	std::cout << COLOR_RESET << std::endl;
+	for (int i = 0; i < 6; i++) {
+		clinic[i]->makeSound();
+		delete clinic[i];
+	}
+	
 }
 
 int	main( void ) {

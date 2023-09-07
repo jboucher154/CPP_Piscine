@@ -125,7 +125,7 @@ int	main( void ) {
 		delete i;
 	}
 	{
-		std::cout << "TEST FROM SUBJECT WITH WRONG ANIMAL / CAT: " << std::endl;
+		std::cout << "\nTEST FROM SUBJECT WITH WRONG ANIMAL / CAT: " << std::endl;
 		const WrongAnimal* meta = new WrongAnimal();
 		const Animal* j = new Dog();
 		const WrongAnimal* i = new WrongCat();

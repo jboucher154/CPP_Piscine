@@ -27,8 +27,10 @@ Dog::~Dog( void ) {
 
 Dog&	Dog::operator=( const Dog& to_copy ) {
 	std::cout << "Dog copy assignment operator overload called" << std::endl;
-	this->AAnimal::type_ = to_copy.getType();
-	*this->brain_ = *to_copy.brain_;
+	if (this != &to_copy) {
+		this->AAnimal::type_ = to_copy.getType();
+		*this->brain_ = *to_copy.brain_;
+	}
 	return (*this);
 }
 

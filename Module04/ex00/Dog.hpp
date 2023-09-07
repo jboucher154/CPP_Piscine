@@ -14,7 +14,7 @@ class	Dog : public Animal
 		Dog&	operator=( const Dog& to_copy );
 
 		/* PUBLIC METHODS */
-		void		makeSound( void ) const;
+		virtual	void	makeSound( void ) const;
 		
 	private:
 		/* PRIVATE METHODS AND MEMBERS */

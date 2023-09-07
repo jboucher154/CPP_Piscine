@@ -15,8 +15,8 @@ class	Cat : public Animal
 		Cat&	operator=( const Cat& to_copy );
 
 		/* PUBLIC METHODS */
-		void	makeSound( void ) const;
-		void	printBrainAddress( void ) const;
+		virtual	void	makeSound( void ) const;
+		void			printBrainAddress( void ) const;
 		
 	private:
 		Brain	*brain_;
