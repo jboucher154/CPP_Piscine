@@ -50,7 +50,7 @@ std::string const	Bureaucrat::getName( void ) const {
 	return (this->name_);
 }
 
-unsigned int	Bureaucrat::getGrade( void ) const {
+int	Bureaucrat::getGrade( void ) const {
 	return (this->grade_);
 }
 

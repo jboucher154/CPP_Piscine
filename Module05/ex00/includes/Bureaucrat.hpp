@@ -17,7 +17,7 @@ class	Bureaucrat
 
 		/* PUBLIC METHODS */
 		std::string const	getName( void ) const;
-		unsigned int		getGrade( void ) const;
+		int					getGrade( void ) const;
 		void				incrementGrade( void ) throw(GradeTooHighException);
 		void				decrementGrade( void ) throw(GradeTooLowException);
 	
@@ -35,10 +35,9 @@ class	Bureaucrat
 	};
 	private:
 		const			std::string name_;
-		unsigned int	grade_; // high 1 - 150 low
+		int				grade_;
 };
 
-//print -> <name>, bureaucrat grade <grade>
 std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print);
 
 #endif
