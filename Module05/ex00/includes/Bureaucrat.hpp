@@ -19,7 +19,7 @@ class	Bureaucrat
 		std::string const	getName( void ) const;
 		unsigned int		getGrade( void ) const;
 		void				incrementGrade( void ) throw(GradeTooHighException);
-		void				decrementGrade( void )  throw(GradeTooLowException);
+		void				decrementGrade( void ) throw(GradeTooLowException);
 	
 	
 	/* NESTED CLASSES - should they be public or private?*/

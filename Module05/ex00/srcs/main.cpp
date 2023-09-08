@@ -3,60 +3,86 @@
 #include "../includes/Color.hpp"
 
 void	testBureaucratExceptionsLow( void ) {
-	{
-		try {
-			Bureaucrat	maggot("maggot", 160);
-			std::cout << maggot;
-		}
-		catch (Bureaucrat::GradeTooLowException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try {
-			Bureaucrat	maggot("maggot", 150);
-			std::cout << maggot;
+	try {
+		Bureaucrat	maggot("maggot", 160);
+		std::cout << maggot;
+	}
+	catch (Bureaucrat::GradeTooLowException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	maggot("maggot", 150);
+		std::cout << maggot;
+		maggot.decrementGrade();
+		std::cout << maggot;
+	}
+	catch (Bureaucrat::GradeTooLowException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	maggot("maggot", INT_MAX);
+		std::cout << maggot;
+		maggot.decrementGrade();
+		std::cout << maggot;
+	}
+	catch (Bureaucrat::GradeTooLowException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	maggot("maggotymaggot", 1);
+		std::cout << maggot;
+		for (int i = 0; i < 150; i++)
+		{
 			maggot.decrementGrade();
-			std::cout << maggot;
+			if (maggot.getGrade() == 1)
+				std::cout << maggot.getName() << " reached bottom level!" << std::endl;
+
 		}
-		catch (Bureaucrat::GradeTooLowException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try {
-			Bureaucrat	maggot("maggot", INT_MAX);
-			std::cout << maggot;
-			maggot.decrementGrade();
-			std::cout << maggot;
-		}
-		catch (Bureaucrat::GradeTooLowException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
+		std::cout << maggot;
+	}
+	catch (Bureaucrat::GradeTooLowException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
 
 void	testBureaucratExceptionsHigh( void ) {
-	{
-		try {
-			Bureaucrat	sauron("sauron", 0);
-			std::cout << sauron;
-		}
-		catch (Bureaucrat::GradeTooHighException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try {
-			Bureaucrat	sauron("sauron", 1);
-			std::cout << sauron;
+
+	try {
+		Bureaucrat	sauron("Sauron", 0);
+		std::cout << sauron;
+	}
+	catch (Bureaucrat::GradeTooHighException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	sauron("Sauron", 1);
+		std::cout << sauron;
+		sauron.incrementGrade();
+		std::cout << sauron;
+	}
+	catch (Bureaucrat::GradeTooHighException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	sauron("Sauron", -1);
+		std::cout << sauron;
+	}
+	catch (Bureaucrat::GradeTooHighException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+	}
+	try {
+		Bureaucrat	sauron("Morgoth", 150);
+		std::cout << sauron;
+		for (int i = 0; i < 150; i++)
+		{
 			sauron.incrementGrade();
-			std::cout << sauron;
+			if (sauron.getGrade() == 1)
+				std::cout << sauron.getName() << " reached top level!" << std::endl;
 		}
-		catch (Bureaucrat::GradeTooHighException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try {
-			Bureaucrat	sauron("sauron", -1);
-			std::cout << sauron;
-		}
-		catch (Bureaucrat::GradeTooHighException e) {
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
+		std::cout << sauron;
+	}
+	catch (Bureaucrat::GradeTooHighException e) {
+		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
 
