@@ -1,7 +1,7 @@
 
 #include "Bureaucrat.hpp"
 
-void	testBureaucratExceptions( void ) {
+void	testBureaucratExceptionsHigh( void ) {
 	{
 		try {
 			Bureaucrat	sauron("sauron", 0);
@@ -73,7 +73,7 @@ void	basicTestBureaucrat( void ) {
 int	main( void ) {
 
 	basicTestBureaucrat();
-	testBureaucratExceptions();
+	testBureaucratExceptionsHigh();
 
 	return (0);
 }
