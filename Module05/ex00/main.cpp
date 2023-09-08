@@ -19,7 +19,24 @@ void	testBureaucratExceptionsHigh( void ) {
 		catch (Bureaucrat::GradeTooHighException e) {
 			std::cout << e.what() << std::endl;
 		}
-
+		}
+	{
+		try {
+			Bureaucrat	maggot("maggot", 160);
+			std::cout << maggot;
+		}
+		catch (Bureaucrat::GradeTooLowException e) {
+			std::cout << e.what() << std::endl;
+		}
+		try {
+			Bureaucrat	maggot("maggot", 150);
+			std::cout << maggot;
+			maggot.decrementGrade();
+			std::cout << maggot;
+		}
+		catch (Bureaucrat::GradeTooLowException e) {
+			std::cout << e.what() << std::endl;
+		}
 	}
 }
 
@@ -67,6 +84,16 @@ void	basicTestBureaucrat( void ) {
 		scum1.decrementGrade();
 		std::cout << scum;
 		std::cout << scum1;
+	}
+	{	
+		Bureaucrat	scum("Orc", 150);
+		Bureaucrat	midLevel("Uruk-hai", 75);
+
+		std::cout << scum;
+		std::cout << midLevel;
+		midLevel = scum;
+		std::cout << scum;
+		std::cout << midLevel;		
 	}
 }
 
