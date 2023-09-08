@@ -7,7 +7,8 @@ Bureaucrat::Bureaucrat( void ) : name_("standardIssueBureaucrat"), grade_(150) {
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 	
-Bureaucrat::Bureaucrat( std::string name, int grade ) : name_(name) {
+Bureaucrat::Bureaucrat( std::string name, int grade ) throw(GradeTooHighException, GradeTooLowException) 
+: name_(name) {
 	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
 	if (grade < 1) {
 		throw (GradeTooHighException());

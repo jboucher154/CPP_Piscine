@@ -1,6 +1,27 @@
 
 #include "Bureaucrat.hpp"
 
+void	testBureaucratExceptionsLow( void ) {
+	{
+		try {
+			Bureaucrat	maggot("maggot", 160);
+			std::cout << maggot;
+		}
+		catch (Bureaucrat::GradeTooLowException e) {
+			std::cout << e.what() << std::endl;
+		}
+		try {
+			Bureaucrat	maggot("maggot", 150);
+			std::cout << maggot;
+			maggot.decrementGrade();
+			std::cout << maggot;
+		}
+		catch (Bureaucrat::GradeTooLowException e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
+}
+
 void	testBureaucratExceptionsHigh( void ) {
 	{
 		try {
@@ -20,24 +41,6 @@ void	testBureaucratExceptionsHigh( void ) {
 			std::cout << e.what() << std::endl;
 		}
 		}
-	{
-		try {
-			Bureaucrat	maggot("maggot", 160);
-			std::cout << maggot;
-		}
-		catch (Bureaucrat::GradeTooLowException e) {
-			std::cout << e.what() << std::endl;
-		}
-		try {
-			Bureaucrat	maggot("maggot", 150);
-			std::cout << maggot;
-			maggot.decrementGrade();
-			std::cout << maggot;
-		}
-		catch (Bureaucrat::GradeTooLowException e) {
-			std::cout << e.what() << std::endl;
-		}
-	}
 }
 
 void	basicTestBureaucrat( void ) {
@@ -101,6 +104,7 @@ int	main( void ) {
 
 	basicTestBureaucrat();
 	testBureaucratExceptionsHigh();
+	testBureaucratExceptionsLow();
 
 	return (0);
 }

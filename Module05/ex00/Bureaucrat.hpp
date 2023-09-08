@@ -8,7 +8,7 @@ class	Bureaucrat
 {
 	public:
 		Bureaucrat( void );
-		Bureaucrat( std::string name, int grade );
+		Bureaucrat( std::string name, int grade ) throw(GradeTooHighException, GradeTooLowException);
 		Bureaucrat( const Bureaucrat& to_copy );
 
 		~Bureaucrat( void );
