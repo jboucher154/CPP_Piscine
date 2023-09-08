@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) throw(GradeTooHighExceptio
 	}
 	this->grade_ = grade;
 }
-//cannot copy name?
+
 Bureaucrat::Bureaucrat( const Bureaucrat& to_copy ) : name_(to_copy.getName()){
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = to_copy;
