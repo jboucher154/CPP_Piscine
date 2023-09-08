@@ -2,7 +2,7 @@
 NAME := Bureaucrat
 SRC_DIR := srcs/
 INC_DIR := ./includes/
-INCLUDES := $(INC_DIR)Bureaucrat.hpp
+INCLUDES := $(INC_DIR)Bureaucrat.hpp $(INC_DIR)Color.hpp
 SRCS := main.cpp Bureaucrat.cpp
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)

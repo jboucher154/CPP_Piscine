@@ -6,10 +6,9 @@
 
 class	Bureaucrat 
 {
-
 	public:
 		Bureaucrat( void );
-		Bureaucrat( std::string name, int grade ); // throw exception for out of range
+		Bureaucrat( std::string name, int grade ) throw(GradeTooHighException, GradeTooLowException);
 		Bureaucrat( const Bureaucrat& to_copy );
 
 		~Bureaucrat( void );
@@ -19,28 +18,27 @@ class	Bureaucrat
 		/* PUBLIC METHODS */
 		std::string const	getName( void ) const;
 		unsigned int		getGrade( void ) const;
-		void				incrementGrade( void ); // throw exception for out of range
-		void				decrementGrade( void ); // throw exception for out of range
-
-		
+		void				incrementGrade( void ) throw(GradeTooHighException);
+		void				decrementGrade( void )  throw(GradeTooLowException);
+	
+	
+	/* NESTED CLASSES - should they be public or private?*/
+	class	GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char*	what( void ) const throw();
+	};
+	class	GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char*	what( void ) const throw();
+	};
 	private:
-		const std::string	name_;
-		int					grade_; // high 1 - 150 low
-		
-		/* NESTED CLASESS */
-
-		class	GradeTooHighException : public std::exception {
-			public:
-				virtual const char* what( void ) const throw();
-		};
-
-		class	GradeTooLowException : public std::exception {
-			public:
-				virtual const char* what( void ) const throw();
-		};
+		const			std::string name_;
+		unsigned int	grade_; // high 1 - 150 low
 };
 
 //print -> <name>, bureaucrat grade <grade>
-std::ostream&	operator<<(std::ostream& output_stream, const Bureaucrat& to_print);
+std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print);
 
 #endif
