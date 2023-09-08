@@ -2,12 +2,13 @@
 # define BUREAUCRAT_HPP
 
 # include <string>
+# include <iostream>
 
 class	Bureaucrat 
 {
 	public:
 		Bureaucrat( void );
-		Bureaucrat( unsigned int grade );
+		Bureaucrat( std::string name, int grade );
 		Bureaucrat( const Bureaucrat& to_copy );
 
 		~Bureaucrat( void );
@@ -19,11 +20,22 @@ class	Bureaucrat
 		unsigned int		getGrade( void ) const;
 		void				incrementGrade( void );
 		void				decrementGrade( void );
-		
+	
+	
+	/* NESTED CLASSES - should they be public or private?*/
+	class	GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char*	what( void ) const throw();
+	};
+	class	GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char*	what( void ) const throw();
+	};
 	private:
-	const			std::string name_;
-	unsigned int	grade_; // high 1 - 150 low
-		/* PRIVATE METHODS AND MEMBERS */
+		const			std::string name_;
+		unsigned int	grade_; // high 1 - 150 low
 };
 
 //print -> <name>, bureaucrat grade <grade>
