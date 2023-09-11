@@ -1,5 +1,5 @@
 
-#include "../includes/AForm.hpp"
+#include "AForm.hpp"
 
 
 /* CONSTRUCTORS */
@@ -93,6 +93,15 @@ void	AForm::beSigned(Bureaucrat& cog) throw(GradeTooLowException)
 		this->signed_ = true;
 	}
 }
+
+/* CLASS PROTECTED METHODS */
+
+void	AForm::copySignedStatus( int signedStatus )
+{
+	this->signed_ = signedStatus;
+}
+
+/* NESTED CLASS METHODS */
 
 const char*	AForm::GradeTooHighException::what( void ) const throw() 
 {

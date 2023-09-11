@@ -1,11 +1,16 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-class	ShrubberyCreationForm 
+# include "AForm.hpp"
+# include <string>
+
+class Bureaucrat;
+
+class	ShrubberyCreationForm : public AForm
 {
 	public:
 		ShrubberyCreationForm( void );
-		ShrubberyCreationForm( /*add parameters*/ );
+		ShrubberyCreationForm( std::string target );
 		ShrubberyCreationForm( const ShrubberyCreationForm& to_copy );
 
 		~ShrubberyCreationForm( void );
@@ -13,9 +18,11 @@ class	ShrubberyCreationForm
 		ShrubberyCreationForm&	operator=( const ShrubberyCreationForm& to_copy );
 
 		/* PUBLIC METHODS */
+		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException);
+		std::string		getTarget( void ) const;
 		
 	private:
-		/* PRIVATE METHODS AND MEMBERS */
+		std::string	target_;
 };
 
 #endif

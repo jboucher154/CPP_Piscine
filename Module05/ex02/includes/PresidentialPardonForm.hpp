@@ -1,11 +1,16 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-class	PresidentialPardonForm 
+# include "AForm.hpp"
+# include <string>
+
+class Bureaucrat;
+
+class	PresidentialPardonForm : public AForm
 {
 	public:
 		PresidentialPardonForm( void );
-		PresidentialPardonForm( /*add parameters*/ );
+		PresidentialPardonForm( std::string target );
 		PresidentialPardonForm( const PresidentialPardonForm& to_copy );
 
 		~PresidentialPardonForm( void );
@@ -13,9 +18,10 @@ class	PresidentialPardonForm
 		PresidentialPardonForm&	operator=( const PresidentialPardonForm& to_copy );
 
 		/* PUBLIC METHODS */
+		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException);
 		
 	private:
-		/* PRIVATE METHODS AND MEMBERS */
+		std::string	target_;
 };
 
 #endif

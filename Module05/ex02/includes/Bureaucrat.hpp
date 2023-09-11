@@ -5,7 +5,7 @@
 # include <iostream>
 # include "AForm.hpp"
 
-class	Form;
+class	AForm;
 
 class	Bureaucrat 
 {
@@ -23,7 +23,9 @@ class	Bureaucrat
 		int					getGrade( void ) const;
 		void				incrementGrade( void ) throw(GradeTooHighException);
 		void				decrementGrade( void ) throw(GradeTooLowException);
-		void				signForm(AForm& toSign);//not const?
+
+		void				signForm( AForm& toSign );//not const?
+		void				executeForm( const AForm& form);
 
 		/* NESTED CLASSES - should they be public or private?*/
 		class	GradeTooHighException : public std::exception

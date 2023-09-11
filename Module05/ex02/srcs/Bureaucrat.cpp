@@ -1,5 +1,5 @@
 
-#include "../includes/Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
  
 /* CONSTRUCTORS */
 
@@ -84,7 +84,20 @@ void	Bureaucrat::decrementGrade( void ) throw(GradeTooLowException)
 	}
 }
 
-void	Bureaucrat::signForm(AForm& toSign) 
+void	Bureaucrat::executeForm( const AForm& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch (AForm::GradeTooLowException e)
+	{
+		std::cout << this->getName() << " could not execute " << form.getName() << "because their grade is too low" << std::endl;
+	}
+}
+
+void	Bureaucrat::signForm( AForm& toSign ) 
 {
 	try 
 	{
@@ -96,6 +109,7 @@ void	Bureaucrat::signForm(AForm& toSign)
 		std::cout << this->getName() << " couldn't sign " << toSign.getName() << " because their grade is too low." << std::endl;
 	}
 }
+
 
 /* NESTED CLASS METHODS */
 

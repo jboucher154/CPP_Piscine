@@ -1,11 +1,16 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-class	RobotomyRequestForm 
+# include "AForm.hpp"
+# include <string>
+
+class Bureaucrat;
+
+class	RobotomyRequestForm : public AForm
 {
 	public:
 		RobotomyRequestForm( void );
-		RobotomyRequestForm( /*add parameters*/ );
+		RobotomyRequestForm( std::string target );
 		RobotomyRequestForm( const RobotomyRequestForm& to_copy );
 
 		~RobotomyRequestForm( void );
@@ -13,9 +18,10 @@ class	RobotomyRequestForm
 		RobotomyRequestForm&	operator=( const RobotomyRequestForm& to_copy );
 
 		/* PUBLIC METHODS */
-		
+		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException);
+
 	private:
-		/* PRIVATE METHODS AND MEMBERS */
+		std::string	target_;
 };
 
 #endif

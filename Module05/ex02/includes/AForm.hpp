@@ -13,7 +13,7 @@ class	AForm
 		AForm( const std::string name, const int signGrade, const int executeGrade ) throw(GradeTooLowException, GradeTooHighException);
 		AForm( const AForm& to_copy );
 
-		~AForm( void );
+		virtual ~AForm( void );
 
 		AForm&	operator=( const AForm& to_copy );
 
@@ -36,7 +36,11 @@ class	AForm
 		int					getExecuteGrade( void ) const;
 		/*  */
 		void				beSigned(Bureaucrat& cog) throw(GradeTooLowException);
-		
+		virtual void		execute(Bureaucrat const & executor) const throw(GradeTooLowException) = 0;
+
+	protected:
+		void				copySignedStatus( int signedStatus );
+
 	private:
 		const std::string	name_;
 		const int			signGrade_;
