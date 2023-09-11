@@ -1,22 +1,23 @@
 
 NAME := Bureaucrat
 SRC_DIR := srcs/
-INC_DIR := ./includes/
-INCLUDES := $(INC_DIR)Bureaucrat.hpp $(INC_DIR)Color.hpp
+INC_DIR := -I./includes
+# INCLUDES := $(INC_DIR)Bureaucrat.hpp $(INC_DIR)Color.hpp
 SRCS := main.cpp Bureaucrat.cpp
-SRCS := $(addprefix $(SRC_DIR),$(SRCS))
-OBJS := $(SRCS:.cpp=.o)
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -I$(INC_DIR)
+SRCS_P := $(addprefix $(SRC_DIR),$(SRCS))
+OBJS := $(SRCS_P:.cpp=.o)
+CFLAGS := -Wall -Wextra -Werror -std=c++98 #$(INC_DIR)
 CC := c++
+
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "Making Bureaucrat"
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(INC_DIR)
 
-%.o: $(SRC_DIR)/%.cpp $(INCLUDES)
-	@$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS): %.o: %.cpp #$(INCLUDES)
+	@$(CC) $(CFLAGS) $(INC_DIR) -c $< -o $@ 
 
 clean:
 	@echo "Cleaning object files"
