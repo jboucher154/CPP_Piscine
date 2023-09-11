@@ -1,6 +1,6 @@
 
-#include "../includes/Bureaucrat.hpp"
-#include "../includes/Color.hpp"
+#include "Bureaucrat.hpp"
+#include "Color.hpp"
 
 void	testBureaucratExceptionsLow( void ) {
 	try {
