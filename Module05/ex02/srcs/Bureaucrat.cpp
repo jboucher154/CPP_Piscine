@@ -1,18 +1,20 @@
 
 #include "Bureaucrat.hpp"
+#include "Color.hpp"
  
 /* CONSTRUCTORS */
 
 Bureaucrat::Bureaucrat( void ) 
 : name_("standardIssueBureaucrat"), grade_(150) {
-	std::cout << "Bureaucrat default constructor created " << this->getName() << std::endl;
+	std::cout << COLOR_BRIGHT_BLUE << "Making new Bureaucrat..." << COLOR_RESET << std::endl;
+	std::cout << COLOR_BRIGHT_BLUE << "Bureaucrat default constructor created " << this->getName() << ", Grade: " << this->getGrade() << COLOR_RESET << std::endl;
 }
 	
 Bureaucrat::Bureaucrat( std::string name, int grade ) 
 throw(GradeTooHighException, GradeTooLowException) 
 : name_(name) 
 {
-	std::cout << "Bureaucrat parameterized constructor created " << this->getName() << ", Grade: " << this->getGrade() << std::endl;
+	std::cout << COLOR_BRIGHT_BLUE << "Making new Bureaucrat..." << COLOR_RESET << std::endl;
 	if (grade < 1) {
 		throw (GradeTooHighException());
 	}
@@ -20,12 +22,13 @@ throw(GradeTooHighException, GradeTooLowException)
 		throw (GradeTooLowException());
 	}
 	this->grade_ = grade;
+	std::cout << COLOR_BRIGHT_BLUE << "Bureaucrat parameterized constructor created " << this->getName() << ", Grade: " << this->getGrade() << COLOR_RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat& to_copy ) 
 : name_(to_copy.getName())
 {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	std::cout << COLOR_BRIGHT_BLUE << "Bureaucrat copy constructor called" << COLOR_RESET << std::endl;
 	*this = to_copy;
 }
  
@@ -33,13 +36,13 @@ Bureaucrat::Bureaucrat( const Bureaucrat& to_copy )
 
 Bureaucrat::~Bureaucrat( void ) 
 {
-		std::cout << "Bureaucrat destructor called for " << this->getName() << std::endl;
+		std::cout << COLOR_BRIGHT_BLUE << "Bureaucrat destructor called for " << this->getName() << COLOR_RESET << std::endl;
 }
 /* OPERATOR OVERLOADS */
 
 Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& to_copy ) 
 {
-	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
+	std::cout << COLOR_BRIGHT_BLUE << "Bureaucrat copy assignment operator called" << COLOR_RESET << std::endl;
 	if (this != &to_copy) {
 		this->grade_ = to_copy.getGrade();
 	}
@@ -48,7 +51,7 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& to_copy )
 //include endl or no?
 std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print) 
 {
-	output_stream << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << ".";
+	output_stream << COLOR_BRIGHT_BLUE << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << "." << COLOR_RESET;
 	return (output_stream);
 }
 
@@ -89,15 +92,15 @@ void	Bureaucrat::executeForm( const AForm& form)
 	try
 	{
 		form.execute(*this);
-		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		std::cout << COLOR_BRIGHT_BLUE << this->getName() << " executed " << form.getName() << COLOR_RESET << std::endl;
 	}
 	catch (AForm::GradeTooLowException e)
 	{
-		std::cout << this->getName() << " could not execute " << form.getName() << "because their grade (" << this->getGrade() << ") is too low!" << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " could not execute " << form.getName() << "because their grade (" << this->getGrade() << ") is too low!" << COLOR_RESET << std::endl;
 	}
 	catch (AForm::FormNotSignedException e)
 	{
-		std::cout << this->getName() << " could not execute " << form.getName() << "because the form: " << form.getName() << "is not signed!" << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " could not execute " << form.getName() << "because the form: " << form.getName() << "is not signed!" << COLOR_RESET << std::endl;
 	}
 }
 
@@ -106,11 +109,11 @@ void	Bureaucrat::signForm( AForm& toSign )
 	try 
 	{
 		toSign.beSigned(*this);
-		std::cout << this->getName() << " signed " << toSign.getName() << std::endl;
+		std::cout << COLOR_BRIGHT_BLUE << this->getName() << " signed " << toSign.getName() << COLOR_RESET << std::endl;
 	}
 	catch (AForm::GradeTooLowException e)
 	{
-		std::cout << this->getName() << " couldn't sign " << toSign.getName() << "because their grade (" << this->getGrade() << ") is too low" << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " couldn't sign " << toSign.getName() << "because their grade (" << this->getGrade() << ") is too low" << COLOR_RESET << std::endl;
 	}
 }
 

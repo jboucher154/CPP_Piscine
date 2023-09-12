@@ -275,7 +275,6 @@ int	main( void )
 	testPresidentialPardonFormClass();
 	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
 	testFormExecution();
-	std::cout << COLOR_BRIGHT_CYAN << std::endl;
 	testBureaucratFormExecution();
 	std::cout << COLOR_RESET << std::endl;
 	return (0);

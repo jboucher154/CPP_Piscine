@@ -2,9 +2,6 @@
 NAME := BetterForms
 SRC_DIR := srcs/
 INC_DIR := -I./includes
-# INCLUDES := $(INC_DIR)Bureaucrat.hpp $(INC_DIR)Color.hpp $(INC_DIR)Form.hpp \
-# 			$(INC_DIR)PresidentialPardonForm.hpp $(INC_DIR)ShrubberyCreationForm.hpp \
-# 			$(INC_DIR)RobotomyRequestForm.hpp
 SRCS := main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)
