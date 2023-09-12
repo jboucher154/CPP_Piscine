@@ -228,22 +228,42 @@ void	testFormExecution( void )
 	}
 }
 
-// void	testBureaucratFormExecution( void )
-// {
-		//test bureaucrat
-		/*
-		-qualified, not signed
-		-qualified signed
-		-unqualified, not signed
-		-qualified, signed
-		*/
+void	testBureaucratFormExecution( void )
+{
+	Bureaucrat	testCog1("Vogon1", 150);
+	Bureaucrat	testCog2("Chief Vogon", 4);
+	{
+		RobotomyRequestForm		roboForm("NewGuy");
+		ShrubberyCreationForm	shrubForm("Front Lawn");
+		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
 
-// }
+		//-form that is not signed, but not quaified
+		testCog1.executeForm(roboForm);
+		testCog1.executeForm(shrubForm);
+		testCog1.executeForm(presForm);
+		//-form that is not signed, but quaified
+		testCog2.executeForm(roboForm);
+		testCog2.executeForm(shrubForm);
+		testCog2.executeForm(presForm);	
+	}
+	{
+		RobotomyRequestForm		roboForm("NewGuy");
+		ShrubberyCreationForm	shrubForm("Front Lawn");
+		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
 
-/*
-TODO-- add check for form signature before execution
-TODO-- make more pedantic print statements
-*/
+		roboForm.beSigned(testCog2);
+		shrubForm.beSigned(testCog2);
+		presForm.beSigned(testCog2);
+		//-form that is not signed, but not quaified
+		testCog1.executeForm(roboForm);
+		testCog1.executeForm(shrubForm);
+		testCog1.executeForm(presForm);
+		//-form that is not signed, but quaified
+		testCog2.executeForm(roboForm);
+		testCog2.executeForm(shrubForm);
+		testCog2.executeForm(presForm);	
+	}
+}
 
 int	main( void )
 {
@@ -255,6 +275,8 @@ int	main( void )
 	testPresidentialPardonFormClass();
 	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
 	testFormExecution();
+	std::cout << COLOR_BRIGHT_CYAN << std::endl;
+	testBureaucratFormExecution();
 	std::cout << COLOR_RESET << std::endl;
 	return (0);
 }
