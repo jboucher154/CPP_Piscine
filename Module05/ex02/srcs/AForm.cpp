@@ -7,14 +7,16 @@
 AForm::AForm( void ) 
 : name_("genericAForm"), signGrade_(149), executeGrade_(150), signed_(false)
 {
-	std::cout << "AForm default constructor called" << std::endl;
+	std::cout << "AForm default constructor created " << this->getName();
+	std::cout << ", Signing grade: " << this->getSignGrade() << ", Exectution grade: " << this->getExecuteGrade() << std::endl;
 }
 
 AForm::AForm( const std::string name, const int signGrade, const int executeGrade ) 
 throw(GradeTooLowException, GradeTooHighException)
 : name_(name), signGrade_(signGrade), executeGrade_(executeGrade), signed_(false)
 {
-	std::cout << "AForm parameterized constructor called" << std::endl;
+	std::cout << "AForm parameterized constructor created " << this->getName();
+	std::cout << ", Signing grade: " << this->getSignGrade() << ", Exectution grade: " << this->getExecuteGrade() << std::endl;
 	if (signGrade > 150 || executeGrade > 150)
 	{
 		throw (GradeTooLowException());
@@ -36,7 +38,7 @@ AForm::AForm( const AForm& to_copy )
 
 AForm::~AForm( void )
 {
-	std::cout << "AForm destructor called" << std::endl;
+	std::cout << "AForm destructor called on " << this->getName() << std::endl;
 }
 
 /* OPERATOR OVERLOADS */
@@ -96,6 +98,19 @@ void	AForm::beSigned(Bureaucrat& cog) throw(GradeTooLowException)
 
 /* CLASS PROTECTED METHODS */
 
+void	AForm::execute(Bureaucrat const & executor) 
+const throw(GradeTooLowException, FormNotSignedException)
+{
+	if (this->getSignedStatus() == false)
+	{
+		throw (AForm::FormNotSignedException());
+	}
+	else if (executor.getGrade() > this->getExecuteGrade())
+	{
+		throw (AForm::GradeTooLowException());
+	}
+}
+
 void	AForm::copySignedStatus( int signedStatus )
 {
 	this->signed_ = signedStatus;
@@ -111,4 +126,9 @@ const char*	AForm::GradeTooHighException::what( void ) const throw()
 const char*	AForm::GradeTooLowException::what( void ) const throw() 
 {
 	return ("Grade is too low");
+}
+
+const char*	AForm::FormNotSignedException::what( void ) const throw() 
+{
+	return ("Form is not signed");
 }

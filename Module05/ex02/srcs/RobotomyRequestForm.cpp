@@ -8,13 +8,13 @@
 RobotomyRequestForm::RobotomyRequestForm( void ) 
 : AForm("RobotomyRequestForm", 72, 45), target_("defaultTarget") 
 {
-	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
+	std::cout << "RobotomyRequestForm default constructor created form for target: " <<  this->target_ << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm( std::string target ) 
 : AForm("RobotomyRequestForm", 72, 45), target_(target)
 {
-	std::cout << "RobotomyRequestForm parameterized constructor called" << std::endl;
+	std::cout << "RobotomyRequestForm parameterized constructor created form for target: " <<  this->target_ << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& to_copy )
@@ -46,29 +46,23 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 
 /* CLASS PUBLIC METHODS */
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException)
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException)
 {
-	if (executor.getGrade() > this->getExecuteGrade())
+	this->AForm::execute(executor);
+	srand(time(NULL));
+	int	success = std::rand() % 2;//check this
+	std::cout << COLOR_BRIGHT_CYAN;
+	std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
+	std::cout << "     Drrrrrrrr...Vrrrrrrrr...Drrrrrrrr" << std::endl;
+	std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
+	if (success)
 	{
-		throw (AForm::GradeTooLowException());
+		std::cout << this->target_ << " has been successfully robotomized!" <<std::endl;
 	}
-	else 
+	else
 	{
-		srand(time(NULL));
-		int	success = std::rand() % 2;//check this
-		std::cout << COLOR_BRIGHT_CYAN;
-		std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
-		std::cout << "     Drrrrrrrr...Vrrrrrrrr...Drrrrrrrr" << std::endl;
-		std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
-		if (success)
-		{
-			std::cout << this->target_ << " has been successfully robotomized!" <<std::endl;
-		}
-		else
-		{
-			std::cout << "Robotomy has failed." << std::endl;
-		}
-		std::cout << COLOR_RESET;
+		std::cout << "Robotomy has failed." << std::endl;
 	}
+	std::cout << COLOR_RESET;
 }
 

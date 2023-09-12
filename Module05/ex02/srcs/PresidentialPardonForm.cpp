@@ -7,13 +7,13 @@
 PresidentialPardonForm::PresidentialPardonForm( void ) 
 : AForm("PresidentialPardonForm", 25, 5), target_("defaultTarget") 
 {
-	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
+	std::cout << "PresidentialPardonForm default constructor created form for target: " <<  this->target_ << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm( std::string target ) 
 : AForm("PresidentialPardonForm", 25, 5), target_(target)
 {
-	std::cout << "PresidentialPardonForm parameterized constructor called" << std::endl;
+	std::cout << "PresidentialPardonForm parameterized constructor created form for target: " <<  this->target_ << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& to_copy )
@@ -45,21 +45,15 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( const PresidentialPar
 
 /* CLASS PUBLIC METHODS */
 
-void	PresidentialPardonForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException)
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException)
 {
-	if (executor.getGrade() > this->getExecuteGrade())
-	{
-		throw (AForm::GradeTooLowException());
-	}
-	else 
-	{
-		std::cout <<  COLOR_BRIGHT_YELLOW;
-		std::cout << "Attention....ATTENTION!!!!" << std::endl;
-		std::cout << "Hear ye, hear ye" << std::endl;
-		std::cout << "The magnanimous President of the Galaxy, Zaphod Beeblebrox," << std::endl;
-		std::cout << "herby pardons " <<  this->target_ << std::endl;
-		std::cout << "That is all." << std::endl;
-		std::cout <<  COLOR_RESET;
-	}
+	this->AForm::execute(executor);
+	std::cout <<  COLOR_BRIGHT_YELLOW;
+	std::cout << "Attention....ATTENTION!!!!" << std::endl;
+	std::cout << "Hear ye, hear ye" << std::endl;
+	std::cout << "The magnanimous President of the Galaxy, Zaphod Beeblebrox," << std::endl;
+	std::cout << "herby pardons " <<  this->target_ << std::endl;
+	std::cout << "That is all." << std::endl;
+	std::cout <<  COLOR_RESET;
 }
 

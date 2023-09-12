@@ -5,14 +5,14 @@
 
 Bureaucrat::Bureaucrat( void ) 
 : name_("standardIssueBureaucrat"), grade_(150) {
-	std::cout << "Bureaucrat default constructor called" << std::endl;
+	std::cout << "Bureaucrat default constructor created " << this->getName() << std::endl;
 }
 	
 Bureaucrat::Bureaucrat( std::string name, int grade ) 
 throw(GradeTooHighException, GradeTooLowException) 
 : name_(name) 
 {
-	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
+	std::cout << "Bureaucrat parameterized constructor created " << this->getName() << ", Grade: " << this->getGrade() << std::endl;
 	if (grade < 1) {
 		throw (GradeTooHighException());
 	}
@@ -33,7 +33,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat& to_copy )
 
 Bureaucrat::~Bureaucrat( void ) 
 {
-		std::cout << "Bureaucrat destructor called" << std::endl;
+		std::cout << "Bureaucrat destructor called for " << this->getName() << std::endl;
 }
 /* OPERATOR OVERLOADS */
 
@@ -93,7 +93,7 @@ void	Bureaucrat::executeForm( const AForm& form)
 	}
 	catch (AForm::GradeTooLowException e)
 	{
-		std::cout << this->getName() << " could not execute " << form.getName() << "because their grade is too low" << std::endl;
+		std::cout << this->getName() << " could not execute " << form.getName() << "because their grade (" << this->getGrade() << ") is too low" << std::endl;
 	}
 }
 
@@ -106,10 +106,9 @@ void	Bureaucrat::signForm( AForm& toSign )
 	}
 	catch (AForm::GradeTooLowException e)
 	{
-		std::cout << this->getName() << " couldn't sign " << toSign.getName() << " because their grade is too low." << std::endl;
+		std::cout << this->getName() << " couldn't sign " << toSign.getName() << "because their grade (" << this->getGrade() << ") is too low" << std::endl;
 	}
 }
-
 
 /* NESTED CLASS METHODS */
 

@@ -28,6 +28,11 @@ class	AForm
 			public:
 				virtual const char*	what( void ) const throw();
 		};
+		class	FormNotSignedException : public std::exception
+		{
+			public:
+				virtual const char*	what( void ) const throw();
+		};
 		/* PUBLIC METHODS */
 		/* getters */
 		std::string const	getName( void ) const;
@@ -36,7 +41,7 @@ class	AForm
 		int					getExecuteGrade( void ) const;
 		/*  */
 		void				beSigned(Bureaucrat& cog) throw(GradeTooLowException);
-		virtual void		execute(Bureaucrat const & executor) const throw(GradeTooLowException) = 0;
+		virtual void		execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException) = 0;
 
 	protected:
 		void				copySignedStatus( int signedStatus );
