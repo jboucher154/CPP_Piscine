@@ -23,12 +23,20 @@ class	Intern
 		Intern&	operator=( const Intern& to_copy );
 
 		/* PUBLIC METHODS */
-		AForm*	makeForm( std::string formName, std::string formTarget);
+		AForm*	makeForm( std::string formName, std::string formTarget) throw (InvalidFormException);
+		/* NESTED CLASSES */
+		class	InvalidFormException : public std::exception
+		{
+			public:
+				virtual const char*	what( void ) const throw();
+		};
 		
+
 	private:
-		ShrubberyCreationForm*	makeShrubForm( std::string target );
-		RobotomyRequestForm*	makeForm( std::string target );
-		ShrubberyCreationForm*	makeShrubForm( std::string target );
+		typedef	AForm*	(Intern::*t_possibleForms[])(std::string);
+		AForm*	makeShrubForm( std::string const target );
+		AForm*	makeRobotomyForm( std::string const target );
+		AForm*	makePresidentialForm( std::string const target );
 };
 
 #endif

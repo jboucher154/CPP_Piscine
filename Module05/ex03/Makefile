@@ -2,7 +2,14 @@
 NAME := Interns
 SRC_DIR := srcs/
 INC_DIR := -I./includes
-SRCS := main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+SRCS := main.cpp \
+		Bureaucrat.cpp \
+		AForm.cpp \
+		PresidentialPardonForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		Intern.cpp \
+
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)
 CFLAGS := -Wall -Wextra -Werror -std=c++98 $(INC_DIR)

@@ -1,281 +1,64 @@
 
-#include "Bureaucrat.hpp"
+// #include "Bureaucrat.hpp"
 #include "Color.hpp"
 #include "AForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
-void	testRobotomyRequestFormClass( void )
+void	testInternClass( void )
 {
-	{
-		RobotomyRequestForm	form0("Fred");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		RobotomyRequestForm	form0("NewGuy");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		RobotomyRequestForm	form0("Sharon");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		RobotomyRequestForm	form0("Thrice");
-		RobotomyRequestForm	form1(form0);
-		RobotomyRequestForm	form2 = form0;
-
-		std::cout << "form0:" << form0 << std::endl;
-		std::cout << "form1:" << form1 << std::endl;
-		std::cout << "form2:" << form2 << std::endl;
-
-		RobotomyRequestForm	form3("Twin");
-		std::cout << "form3:" << form3 << std::endl;
-		form3 = form0;
-		std::cout << "form3 after = form0:" << form3 << std::endl;
-	}
+		Intern	intern0;
+		Intern	intern1(intern0);
+		Intern	intern2 = intern0;
 }
 
-void	testShrubberyCreationFormClass( void )
+void	testInternFormCreation( void )
 {
-	{
-		ShrubberyCreationForm	form0("Front Lawn");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		ShrubberyCreationForm	form0("Yard");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		ShrubberyCreationForm	form0("Fountainside");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		ShrubberyCreationForm	form0("Triple_Park");
-		ShrubberyCreationForm	form1(form0);
-		ShrubberyCreationForm	form2 = form0;
-
-		std::cout << "form0:" << form0 << std::endl;
-		std::cout << "form1:" << form1 << std::endl;
-		std::cout << "form2:" << form2 << std::endl;
-
-		ShrubberyCreationForm	form3("Duplex");
-		std::cout << "form3:" << form3 << std::endl;
-		form3 = form0;
-		std::cout << "form3 after = form0:" << form3 << std::endl;
-	}
-}
-
-void	testPresidentialPardonFormClass( void )
-{
-	{
-		PresidentialPardonForm	form0("Zaphod Beeblebrox");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		PresidentialPardonForm	form0("Zaphod Beeblebrox's mom");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		PresidentialPardonForm	form0("His own assistant");
-
-		std::cout << form0 << std::endl;
-	}
-	{
-		PresidentialPardonForm	form0("Towels");
-		PresidentialPardonForm	form1(form0);
-		PresidentialPardonForm	form2 = form0;
-
-		std::cout << "form0:" << form0 << std::endl;
-		std::cout << "form1:" << form1 << std::endl;
-		std::cout << "form2:" << form2 << std::endl;
-
-		PresidentialPardonForm	form3("Dolphins");
-		std::cout << "form3:" << form3 << std::endl;
-		form3 = form0;
-		std::cout << "form3 after = form0:" << form3 << std::endl;
-
-	}
-}
-
-void	testFormExecution( void )
-{
-	Bureaucrat	testCog1("Vogon1", 150);
-	Bureaucrat	testCog2("Chief Vogon", 4);
+	Intern	intern;
 
 	{
-		RobotomyRequestForm		roboForm("NewGuy");
-		ShrubberyCreationForm	shrubForm("Front Lawn");
-		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
+		try
+		{
+			AForm	*shrubs = intern.makeForm("shrubbery creation", "spaceship");
+			AForm	*robo = intern.makeForm("robotomy request", "You");
+			AForm	*pres = intern.makeForm("presidential pardon", "Donald Duck");
 
-		//-form that is not signed, but not quaified
-		try 
-		{
-			roboForm.execute(testCog1);
+			std::cout << "Shrubs form : \n" << *shrubs << std::endl;
+			std::cout << "Robo form : \n" << *shrubs << std::endl;
+			std::cout << "Presform : \n" << *shrubs << std::endl;
+
+			if (shrubs)
+				delete	shrubs;
+			if (robo)
+				delete	robo;
+			if (pres)
+				delete	pres;
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (Intern::InvalidFormException e)
 		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			shrubForm.execute(testCog1);
-		}
-		catch (AForm::FormNotSignedException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			presForm.execute(testCog1);
-		}
-		catch (AForm::FormNotSignedException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		//-form that is not signed, but quaified
-		try 
-		{
-			roboForm.execute(testCog2);
-		}
-		catch (AForm::FormNotSignedException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			shrubForm.execute(testCog2);
-		}
-		catch (AForm::FormNotSignedException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			presForm.execute(testCog2);		
-		}
-		catch (AForm::FormNotSignedException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+			std::cerr << COLOR_RED << "Test 1: " << e.what() << COLOR_RESET << std::endl;
 		}
 	}
 	{
-		RobotomyRequestForm		roboForm("NewGuy");
-		ShrubberyCreationForm	shrubForm("Front Lawn");
-		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
-
-		roboForm.beSigned(testCog2);
-		shrubForm.beSigned(testCog2);
-		presForm.beSigned(testCog2);
-		//-form that is signed, but not quaified
 		try 
 		{
-			roboForm.execute(testCog1);
+			AForm	*shrubs = intern.makeForm("shrubb creation", "My Head");
+			std::cout << "Shrubs form : \n" << *shrubs << std::endl;
+			if (shrubs)
+				delete	shrubs;	
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (Intern::InvalidFormException e)
 		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
+			std::cerr << COLOR_RED << "Test 2: " << e.what() << COLOR_RESET << std::endl;
 		}
-		try 
-		{
-			shrubForm.execute(testCog1);
-		}
-		catch (AForm::GradeTooLowException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			presForm.execute(testCog1);
-		}
-		catch (AForm::GradeTooLowException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		//-form that is signed, and quaified
-		try 
-		{
-			roboForm.execute(testCog2);
-		}
-		catch (AForm::GradeTooLowException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			shrubForm.execute(testCog2);
-		}
-		catch (AForm::GradeTooLowException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-		try 
-		{
-			presForm.execute(testCog2);		
-		}
-		catch (AForm::GradeTooLowException e)
-		{
-			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-		}
-	}
-}
-
-void	testBureaucratFormExecution( void )
-{
-	Bureaucrat	testCog1("Vogon1", 150);
-	Bureaucrat	testCog2("Chief Vogon", 4);
-	{
-		RobotomyRequestForm		roboForm("NewGuy");
-		ShrubberyCreationForm	shrubForm("Front Lawn");
-		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
-
-		//-form that is not signed, but not quaified
-		testCog1.executeForm(roboForm);
-		testCog1.executeForm(shrubForm);
-		testCog1.executeForm(presForm);
-		//-form that is not signed, but quaified
-		testCog2.executeForm(roboForm);
-		testCog2.executeForm(shrubForm);
-		testCog2.executeForm(presForm);	
-	}
-	{
-		RobotomyRequestForm		roboForm("NewGuy");
-		ShrubberyCreationForm	shrubForm("Front Lawn");
-		PresidentialPardonForm	presForm("Zaphod Beeblebrox");
-
-		roboForm.beSigned(testCog2);
-		shrubForm.beSigned(testCog2);
-		presForm.beSigned(testCog2);
-		//-form that is not signed, but not quaified
-		testCog1.executeForm(roboForm);
-		testCog1.executeForm(shrubForm);
-		testCog1.executeForm(presForm);
-		//-form that is not signed, but quaified
-		testCog2.executeForm(roboForm);
-		testCog2.executeForm(shrubForm);
-		testCog2.executeForm(presForm);	
 	}
 }
 
 int	main( void )
 {
-	std::cout << COLOR_BRIGHT_BLUE << std::endl;
-	testRobotomyRequestFormClass();
-	std::cout << COLOR_BRIGHT_GREEN << std::endl;
-	testShrubberyCreationFormClass();
-	std::cout << COLOR_BRIGHT_MAGENTA << std::endl;
-	testPresidentialPardonFormClass();
-	std::cout << COLOR_BRIGHT_YELLOW << std::endl;
-	testFormExecution();
-	testBureaucratFormExecution();
-	std::cout << COLOR_RESET << std::endl;
+	testInternClass();
+	testInternFormCreation();
 	return (0);
 }
