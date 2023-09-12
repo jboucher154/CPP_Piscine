@@ -265,6 +265,10 @@ void	testBureaucratFormExecution( void )
 	}
 }
 
+
+/*
+FIX the robotomy success rate!
+*/
 int	main( void )
 {
 	std::cout << COLOR_BRIGHT_BLUE << std::endl;
