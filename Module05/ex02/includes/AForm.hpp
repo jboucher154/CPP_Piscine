@@ -1,7 +1,6 @@
 #ifndef AFORM_HPP
 # define AFORM_HPP
 
-# include <string>
 # include "Bureaucrat.hpp"
 
 class	Bureaucrat;
