@@ -24,10 +24,7 @@ Intern::~Intern( void ) {
 
 Intern&	Intern::operator=( const Intern& toCopy ) {
 	//nothing to copy
-	if (this != &toCopy)
-	{
-		return (*this);
-	}
+	( void ) toCopy;
 	return (*this);
 }
 
