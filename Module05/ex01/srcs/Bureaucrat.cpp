@@ -1,5 +1,6 @@
 
 #include "Bureaucrat.hpp"
+#include "Color.hpp"
  
 /* CONSTRUCTORS */
 
@@ -45,10 +46,10 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& to_copy )
 	}
 	return (*this);
 }
-//include endl or no?
+
 std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print) 
 {
-	output_stream << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << ".";
+	output_stream << to_print.getName() << ", bureaucrat grade " << to_print.getGrade();
 	return (output_stream);
 }
 
@@ -91,9 +92,9 @@ void	Bureaucrat::signForm(Form& toSign)
 		toSign.beSigned(*this);
 		std::cout << this->getName() << " signed " << toSign.getName() << std::endl;
 	}
-	catch (Form::GradeTooLowException e)
+	catch (Form::GradeTooLowException& e)
 	{
-		std::cout << this->getName() << " couldn't sign " << toSign.getName() << " because their grade is too low." << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " couldn't sign " << toSign.getName() << " because: "<< COLOR_RESET << e.what() << std::endl;
 	}
 }
 

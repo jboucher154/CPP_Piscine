@@ -121,7 +121,7 @@ void	testFormExecution( void )
 		{
 			roboForm.execute(testCog1);
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -129,7 +129,7 @@ void	testFormExecution( void )
 		{
 			shrubForm.execute(testCog1);
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -137,7 +137,7 @@ void	testFormExecution( void )
 		{
 			presForm.execute(testCog1);
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -146,7 +146,7 @@ void	testFormExecution( void )
 		{
 			roboForm.execute(testCog2);
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -154,7 +154,7 @@ void	testFormExecution( void )
 		{
 			shrubForm.execute(testCog2);
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -162,7 +162,7 @@ void	testFormExecution( void )
 		{
 			presForm.execute(testCog2);		
 		}
-		catch (AForm::FormNotSignedException e)
+		catch (AForm::FormNotSignedException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -180,7 +180,7 @@ void	testFormExecution( void )
 		{
 			roboForm.execute(testCog1);
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -188,7 +188,7 @@ void	testFormExecution( void )
 		{
 			shrubForm.execute(testCog1);
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -196,7 +196,7 @@ void	testFormExecution( void )
 		{
 			presForm.execute(testCog1);
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -205,7 +205,7 @@ void	testFormExecution( void )
 		{
 			roboForm.execute(testCog2);
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -213,7 +213,7 @@ void	testFormExecution( void )
 		{
 			shrubForm.execute(testCog2);
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -221,7 +221,7 @@ void	testFormExecution( void )
 		{
 			presForm.execute(testCog2);		
 		}
-		catch (AForm::GradeTooLowException e)
+		catch (AForm::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 		}
@@ -265,10 +265,6 @@ void	testBureaucratFormExecution( void )
 	}
 }
 
-
-/*
-FIX the robotomy success rate!
-*/
 int	main( void )
 {
 	std::cout << COLOR_BRIGHT_BLUE << std::endl;

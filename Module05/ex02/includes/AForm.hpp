@@ -41,7 +41,7 @@ class	AForm
 		int					getExecuteGrade( void ) const;
 		/*  */
 		void				beSigned(Bureaucrat& cog) throw(GradeTooLowException);
-		virtual void		execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException) = 0;
+		virtual void		execute(const Bureaucrat& executor) const throw(GradeTooLowException, FormNotSignedException) = 0;
 
 	protected:
 		void				copySignedStatus( int signedStatus );

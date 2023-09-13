@@ -45,7 +45,7 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( const PresidentialPar
 
 /* CLASS PUBLIC METHODS */
 
-void	PresidentialPardonForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException)
+void	PresidentialPardonForm::execute( const Bureaucrat& executor ) const throw(GradeTooLowException, FormNotSignedException)
 {
 	this->AForm::execute(executor);
 	std::cout <<  COLOR_BRIGHT_YELLOW;

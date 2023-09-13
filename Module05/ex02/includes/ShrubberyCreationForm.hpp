@@ -18,7 +18,7 @@ class	ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm&	operator=( const ShrubberyCreationForm& to_copy );
 
 		/* PUBLIC METHODS */
-		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException);
+		virtual void	execute(const Bureaucrat& executor) const throw(GradeTooLowException, FormNotSignedException);
 		std::string		getTarget( void ) const;
 		
 	private:

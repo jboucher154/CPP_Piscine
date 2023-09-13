@@ -40,7 +40,7 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& to_copy ) {
 }
 //include endl or no?
 std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print) {
-	output_stream << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << "." << std::endl;
+	output_stream << to_print.getName() << ", bureaucrat grade " << to_print.getGrade();
 	return (output_stream);
 }
 

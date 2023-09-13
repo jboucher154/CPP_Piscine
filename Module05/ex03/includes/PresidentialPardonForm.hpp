@@ -2,7 +2,7 @@
 # define PRESIDENTIALPARDONFORM_HPP
 
 # include "AForm.hpp"
-# include <string>
+// # include <string>
 
 class Bureaucrat;
 
@@ -18,7 +18,7 @@ class	PresidentialPardonForm : public AForm
 		PresidentialPardonForm&	operator=( const PresidentialPardonForm& to_copy );
 
 		/* PUBLIC METHODS */
-		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException);
+		virtual void	execute( const Bureaucrat& executor ) const throw(GradeTooLowException, FormNotSignedException);
 		
 	private:
 		std::string	target_;

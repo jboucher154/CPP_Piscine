@@ -48,10 +48,10 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& to_copy )
 	}
 	return (*this);
 }
-//include endl or no?
+
 std::ostream&	operator << (std::ostream& output_stream, const Bureaucrat& to_print) 
 {
-	output_stream << COLOR_BRIGHT_BLUE << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << "." << COLOR_RESET;
+	output_stream << COLOR_BRIGHT_BLUE << to_print.getName() << ", bureaucrat grade " << to_print.getGrade() << COLOR_RESET;
 	return (output_stream);
 }
 
@@ -94,13 +94,9 @@ void	Bureaucrat::executeForm( const AForm& form)
 		form.execute(*this);
 		std::cout << COLOR_BRIGHT_BLUE << this->getName() << " executed " << form.getName() << COLOR_RESET << std::endl;
 	}
-	catch (AForm::GradeTooLowException e)
+	catch (std::exception& e)
 	{
-		std::cout << COLOR_BRIGHT_RED << this->getName() << " could not execute " << form.getName() << "because their grade (" << this->getGrade() << ") is too low!" << COLOR_RESET << std::endl;
-	}
-	catch (AForm::FormNotSignedException e)
-	{
-		std::cout << COLOR_BRIGHT_RED << this->getName() << " could not execute " << form.getName() << "because the form: " << form.getName() << "is not signed!" << COLOR_RESET << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " could not execute " << form.getName() << "because: " << e.what() << "!" << COLOR_RESET << std::endl;
 	}
 }
 
@@ -111,9 +107,9 @@ void	Bureaucrat::signForm( AForm& toSign )
 		toSign.beSigned(*this);
 		std::cout << COLOR_BRIGHT_BLUE << this->getName() << " signed " << toSign.getName() << COLOR_RESET << std::endl;
 	}
-	catch (AForm::GradeTooLowException e)
+	catch (AForm::GradeTooLowException& e)
 	{
-		std::cout << COLOR_BRIGHT_RED << this->getName() << " couldn't sign " << toSign.getName() << "because their grade (" << this->getGrade() << ") is too low" << COLOR_RESET << std::endl;
+		std::cout << COLOR_BRIGHT_RED << this->getName() << " couldn't sign " << toSign.getName() << " because: " << e.what() << COLOR_RESET << std::endl;
 	}
 }
 

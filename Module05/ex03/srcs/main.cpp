@@ -12,6 +12,7 @@ void	testInternClass( void )
 		Intern	intern0;
 		Intern	intern1(intern0);
 		Intern	intern2 = intern0;
+		intern2 = intern1;
 }
 
 void	testInternFormCreation( void )
@@ -36,7 +37,7 @@ void	testInternFormCreation( void )
 			if (pres)
 				delete	pres;
 		}
-		catch (Intern::InvalidFormException e)
+		catch (Intern::InvalidFormException& e)
 		{
 			std::cerr << COLOR_RED << "Test 1: " << e.what() << COLOR_RESET << std::endl;
 		}
@@ -49,7 +50,7 @@ void	testInternFormCreation( void )
 			if (shrubs)
 				delete	shrubs;	
 		}
-		catch (Intern::InvalidFormException e)
+		catch (Intern::InvalidFormException& e)
 		{
 			std::cerr << COLOR_RED << "Test 2: " << e.what() << COLOR_RESET << std::endl;
 		}

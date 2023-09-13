@@ -50,7 +50,7 @@ std::string		ShrubberyCreationForm::getTarget( void ) const
 	return (this->target_);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException)
+void	ShrubberyCreationForm::execute( const Bureaucrat& executor ) const throw(GradeTooLowException, FormNotSignedException)
 {
 	this->AForm::execute(executor);
 	std::string		fname = this->getTarget() + "_shrubbery";

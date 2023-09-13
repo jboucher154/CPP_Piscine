@@ -1,147 +1,7 @@
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "Color.hpp"
-
-void	testBureaucratExceptionsLow( void ) {
-	try {
-		Bureaucrat	maggot("maggot", 160);
-		std::cout << maggot;
-	}
-	catch (Bureaucrat::GradeTooLowException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	maggot("maggot", 150);
-		std::cout << maggot;
-		maggot.decrementGrade();
-		std::cout << maggot;
-	}
-	catch (Bureaucrat::GradeTooLowException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	maggot("maggot", INT_MAX);
-		std::cout << maggot;
-		maggot.decrementGrade();
-		std::cout << maggot;
-	}
-	catch (Bureaucrat::GradeTooLowException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	maggot("maggotymaggot", 1);
-		std::cout << maggot;
-		for (int i = 0; i < 150; i++)
-		{
-			maggot.decrementGrade();
-			if (maggot.getGrade() == 1)
-				std::cout << maggot.getName() << " reached bottom level!" << std::endl;
-
-		}
-		std::cout << maggot;
-	}
-	catch (Bureaucrat::GradeTooLowException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-}
-
-void	testBureaucratExceptionsHigh( void ) {
-
-	try {
-		Bureaucrat	sauron("Sauron", 0);
-		std::cout << sauron;
-	}
-	catch (Bureaucrat::GradeTooHighException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	sauron("Sauron", 1);
-		std::cout << sauron;
-		sauron.incrementGrade();
-		std::cout << sauron;
-	}
-	catch (Bureaucrat::GradeTooHighException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	sauron("Sauron", -1);
-		std::cout << sauron;
-	}
-	catch (Bureaucrat::GradeTooHighException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-	try {
-		Bureaucrat	sauron("Morgoth", 150);
-		std::cout << sauron;
-		for (int i = 0; i < 150; i++)
-		{
-			sauron.incrementGrade();
-			if (sauron.getGrade() == 1)
-				std::cout << sauron.getName() << " reached top level!" << std::endl;
-		}
-		std::cout << sauron;
-	}
-	catch (Bureaucrat::GradeTooHighException e) {
-		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
-	}
-}
-
-void	testBasicBureaucrat( void ) {
-	{	
-		Bureaucrat	scum;
-
-		std::cout << scum;
-		scum.incrementGrade();
-		std::cout << scum;
-		scum.incrementGrade();
-		std::cout << scum;
-		scum.decrementGrade();
-		std::cout << scum;
-		scum.decrementGrade();
-		std::cout << scum;
-	}
-	{	
-		Bureaucrat	scum("Maggot", 150);
-
-		std::cout << scum;
-		scum.incrementGrade();
-		std::cout << scum;
-		scum.incrementGrade();
-		std::cout << scum;
-		scum.decrementGrade();
-		std::cout << scum;
-		scum.decrementGrade();
-		std::cout << scum;
-	}
-	{	
-		Bureaucrat	scum("Orc1", 150);
-
-		std::cout << scum;
-		scum.incrementGrade();
-		std::cout << scum;
-
-		Bureaucrat	scum1(scum);
-		std::cout << scum1;
-
-		scum1.incrementGrade();
-		std::cout << scum;
-		std::cout << scum1;
-		scum.decrementGrade();
-		scum1.decrementGrade();
-		std::cout << scum;
-		std::cout << scum1;
-	}
-	{	
-		Bureaucrat	scum("Orc", 150);
-		Bureaucrat	midLevel("Uruk-hai", 75);
-
-		std::cout << scum;
-		std::cout << midLevel;
-		midLevel = scum;
-		std::cout << scum;
-		std::cout << midLevel;		
-	}
-}
 
 void	testBasicForm( void )
 {
@@ -185,7 +45,7 @@ void	testCreationExceptionsForm( void )
 		Form		test("Query", 0, 150);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -195,7 +55,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 151, 150);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooLowException e)
+	catch (Form::GradeTooLowException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -205,7 +65,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", -12, 10);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -215,7 +75,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 40, 0);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -225,7 +85,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 40, 160);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooLowException e)
+	catch (Form::GradeTooLowException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -235,7 +95,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 40, -2);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -245,7 +105,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 0, 0);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -255,7 +115,7 @@ void	testCreationExceptionsForm( void )
 		Form	test("Query", 1000, 1000);
 		std::cout << test << std::endl;
 	}
-	catch (Form::GradeTooLowException e)
+	catch (Form::GradeTooLowException& e)
 	{
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_MAGENTA << std::endl;
 	}
@@ -280,7 +140,7 @@ void	testBeSignedForm( void )
 		{
 			toSign.beSigned(Midlevel);
 		}
-		catch (Form::GradeTooLowException e)
+		catch (Form::GradeTooLowException& e)
 		{
 			std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_BRIGHT_CYAN << std::endl;
 		}
@@ -318,13 +178,6 @@ void	testSignFormBureaucrat( void )
 
 int	main( void )
 {
-
-	/*std::cout << COLOR_BRIGHT_GREEN << "\nBASIC BUREAUCRAT TESTS\n";
-	testBasicBureaucrat();
-	std::cout << COLOR_BRIGHT_MAGENTA << "\nBureaucratExceptionsHigh TESTS\n";
-	testBureaucratExceptionsHigh();
-	std::cout << COLOR_BRIGHT_YELLOW << "\nBureaucratExceptionsLow TESTS\n";
-	testBureaucratExceptionsLow();*/
 	std::cout << COLOR_BRIGHT_GREEN << "\nBASIC FORM TESTS\n";
 	testBasicForm();
 	std::cout << COLOR_BRIGHT_MAGENTA << "\nFORM CREATION Exception TESTS\n";

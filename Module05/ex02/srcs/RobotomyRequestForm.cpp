@@ -46,7 +46,7 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 
 /* CLASS PUBLIC METHODS */
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException)
+void	RobotomyRequestForm::execute(const Bureaucrat& executor) const throw(GradeTooLowException, FormNotSignedException)
 {
 	this->AForm::execute(executor);
 	srand(time(NULL));

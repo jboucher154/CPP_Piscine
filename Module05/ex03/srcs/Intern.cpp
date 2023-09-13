@@ -55,19 +55,18 @@ throw (InvalidFormException)
 {
 	std::string validForms[] = {"robotomy request", "shrubbery creation", "presidential pardon"};
 	Intern::t_possibleForms forms = { &Intern::makeRobotomyForm, &Intern::makeShrubForm, &Intern::makePresidentialForm };
-	// AForm*	(Intern::*forms[3])(std::string co nst target) = { &Intern::makeRobotomyForm, &Intern::makeShrubForm, &Intern::makePresidentialForm };
 	AForm*	returnForm = nullptr;
 	for (int i = 0; i < 3; i++)
 	{
 		if (!formName.compare(validForms[i]))
 		{
-			returnForm = (this->*forms[i])(formTarget);
 			std::cout << COLOR_BRIGHT_GREEN << "Intern creates " << formName << " for target " << formTarget << COLOR_RESET << std::endl;
+			returnForm = (this->*forms[i])(formTarget);
 			return (returnForm);
 		}
 	}
 	std::cout << COLOR_RED << "Error: the requested form [" << formName << "] does not exist. Form was not allocated." << std::endl;
 	std::cout << "Please check your spelling." << std::endl;
-	std::cout << "Usage Note: The form request is case sensitive and must be lowercase." << COLOR_RESET << std::endl;
+	std::cout << "Usage Note: The form request is case sensitive and must be lowercase. e.g: shrubbery creation " << COLOR_RESET << std::endl;
 	throw (InvalidFormException());
 }

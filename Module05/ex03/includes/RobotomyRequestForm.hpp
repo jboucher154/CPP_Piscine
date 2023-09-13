@@ -2,7 +2,7 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
-# include <string>
+// # include <string>
 
 class Bureaucrat;
 
@@ -18,7 +18,7 @@ class	RobotomyRequestForm : public AForm
 		RobotomyRequestForm&	operator=( const RobotomyRequestForm& to_copy );
 
 		/* PUBLIC METHODS */
-		virtual void	execute(Bureaucrat const & executor) const throw(GradeTooLowException, FormNotSignedException);
+		virtual void	execute( const Bureaucrat& executor ) const throw(GradeTooLowException, FormNotSignedException);
 
 	private:
 		std::string	target_;

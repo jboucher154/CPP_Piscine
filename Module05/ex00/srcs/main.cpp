@@ -5,32 +5,32 @@
 void	testBureaucratExceptionsLow( void ) {
 	try {
 		Bureaucrat	maggot("maggot", 160);
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException e) {
+	catch (Bureaucrat::GradeTooLowException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	maggot("maggot", 150);
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 		maggot.decrementGrade();
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException e) {
+	catch (Bureaucrat::GradeTooLowException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	maggot("maggot", INT_MAX);
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 		maggot.decrementGrade();
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException e) {
+	catch (Bureaucrat::GradeTooLowException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	maggot("maggotymaggot", 1);
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 		for (int i = 0; i < 150; i++)
 		{
 			maggot.decrementGrade();
@@ -38,9 +38,9 @@ void	testBureaucratExceptionsLow( void ) {
 				std::cout << maggot.getName() << " reached bottom level!" << std::endl;
 
 		}
-		std::cout << maggot;
+		std::cout << maggot << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException e) {
+	catch (std::exception& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
@@ -49,39 +49,39 @@ void	testBureaucratExceptionsHigh( void ) {
 
 	try {
 		Bureaucrat	sauron("Sauron", 0);
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException e) {
+	catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	sauron("Sauron", 1);
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 		sauron.incrementGrade();
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException e) {
+	catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	sauron("Sauron", -1);
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException e) {
+	catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try {
 		Bureaucrat	sauron("Morgoth", 150);
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 		for (int i = 0; i < 150; i++)
 		{
 			sauron.incrementGrade();
 			if (sauron.getGrade() == 1)
 				std::cout << sauron.getName() << " reached top level!" << std::endl;
 		}
-		std::cout << sauron;
+		std::cout << sauron << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException e) {
+	catch (std::exception& e) {
 		std::cout << COLOR_BRIGHT_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
@@ -90,56 +90,56 @@ void	testBasicBureaucrat( void ) {
 	{	
 		Bureaucrat	scum;
 
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.incrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.incrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.decrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.decrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 	}
 	{	
 		Bureaucrat	scum("Maggot", 150);
 
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.incrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.incrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.decrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.decrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 	}
 	{	
 		Bureaucrat	scum("Orc1", 150);
 
-		std::cout << scum;
+		std::cout << scum << std::endl;
 		scum.incrementGrade();
-		std::cout << scum;
+		std::cout << scum << std::endl;
 
 		Bureaucrat	scum1(scum);
-		std::cout << scum1;
+		std::cout << scum1 << std::endl;
 
 		scum1.incrementGrade();
-		std::cout << scum;
-		std::cout << scum1;
+		std::cout << scum << std::endl;
+		std::cout << scum1 << std::endl;
 		scum.decrementGrade();
 		scum1.decrementGrade();
-		std::cout << scum;
-		std::cout << scum1;
+		std::cout << scum << std::endl;
+		std::cout << scum1 << std::endl;
 	}
 	{	
 		Bureaucrat	scum("Orc", 150);
 		Bureaucrat	midLevel("Uruk-hai", 75);
 
-		std::cout << scum;
-		std::cout << midLevel;
+		std::cout << scum << std::endl;
+		std::cout << midLevel << std::endl;
 		midLevel = scum;
-		std::cout << scum;
-		std::cout << midLevel;		
+		std::cout << scum << std::endl;
+		std::cout << midLevel << std::endl;		
 	}
 }
 
