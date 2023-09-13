@@ -50,12 +50,12 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const throw(Grade
 {
 	this->AForm::execute(executor);
 	srand(time(NULL));
-	int	success = std::rand() % 2;//check this
+	static int	success = std::rand();
 	std::cout << COLOR_BRIGHT_CYAN;
 	std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
 	std::cout << "     Drrrrrrrr...Vrrrrrrrr...Drrrrrrrr" << std::endl;
 	std::cout << "Vrrrrrrrr...Drrrrrrrr...Vrrrrrrrr" << std::endl;
-	if (success)
+	if (success % 2)
 	{
 		std::cout << this->target_ << " has been successfully robotomized!" <<std::endl;
 	}
@@ -64,5 +64,6 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const throw(Grade
 		std::cout << "Robotomy has failed." << std::endl;
 	}
 	std::cout << COLOR_RESET;
+	success++;
 }
 
