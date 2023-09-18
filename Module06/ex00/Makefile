@@ -2,11 +2,11 @@
 NAME := convert
 SRC_DIR := srcs/
 INC_DIR := -I./includes
-SRCS := main.cpp 
+SRCS := main.cpp ScalarConverter.cpp
 
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)
-CFLAGS := -Wall -Wextra -Werror -std=c++98 $(INC_DIR)
+CFLAGS := -Wall -Wextra -Werror -std=c++98 $(INC_DIR) -g
 CC := c++
 
 all: $(NAME)
