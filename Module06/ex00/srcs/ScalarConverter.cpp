@@ -1,6 +1,7 @@
 
 #include "ScalarConverter.hpp"
 #include <iostream>
+#include <iomanip>
 
 int		ScalarConverter::Type_ = noDataType;
 char	ScalarConverter::char_convert_ = 0;
@@ -37,7 +38,7 @@ ScalarConverter&	ScalarConverter::operator=( const ScalarConverter& to_copy )
 	return (*this);
 }
 
-/* MEMBER FUNCTIONS */
+/* PRIVATE MEMBER FUNCTIONS */
 
 long double	ScalarConverter::setLimitChecker( std::string& input)
 {
@@ -54,7 +55,8 @@ long double	ScalarConverter::setLimitChecker( std::string& input)
 		}
 		catch (std::exception& e)
 		{
-			std::cerr << "Error while converting to long double. Unable to set limit checker." << std::endl;
+			// std::cerr << "Error while converting to long double. Unable to set limit checker." << std::endl;
+			return (0);
 		}
 	}
 	return (0);
@@ -73,10 +75,10 @@ bool	ScalarConverter::checkInRange( int type_to_check)
 			in_limits = ScalarConverter::limit_checker <= std::numeric_limits<int>::max() && ScalarConverter::limit_checker >= std::numeric_limits<int>::min();
 			break ;
 		case floatDataType:
-			in_limits = ScalarConverter::limit_checker <= std::numeric_limits<float>::max() && ScalarConverter::limit_checker >= std::numeric_limits<float>::min();//
+			in_limits = ScalarConverter::limit_checker <= std::numeric_limits<float>::max() && ScalarConverter::limit_checker >= -std::numeric_limits<float>::max();//
 			break ;
 		case doubleDataType:
-			in_limits = ScalarConverter::limit_checker <= std::numeric_limits<double>::max() && ScalarConverter::limit_checker >= std::numeric_limits<double>::min();//
+			in_limits = ScalarConverter::limit_checker <= std::numeric_limits<double>::max() && ScalarConverter::limit_checker >= -std::numeric_limits<double>::max();//
 			break ;
 		default:
 			in_limits = false;
@@ -112,17 +114,19 @@ void	ScalarConverter::convertToChar( void )
 
 void	ScalarConverter::printChar( void )
 {
+	std::cout << std::left;
+	std::cout<< std::setw(10);
 	if (ScalarConverter::Type_ == noDataType || ScalarConverter::nan_found_ || ScalarConverter::inf_found_ || ScalarConverter::char_flag_ == false)
 	{
-		std::cout << "char:	impossible" << std::endl;
+		std::cout << "char:" << "impossible" << std::endl;
 	}
 	else if (!std::isprint(ScalarConverter::char_convert_))
 	{
-		std::cout << "char:	not printable" << std::endl;
+		std::cout << "char:" << "not printable" << std::endl;
 	}
 	else
 	{
-		std::cout << "char:	" << ScalarConverter::char_convert_ << std::endl;
+		std::cout << "char:" << "'" << std::setw(0) << ScalarConverter::char_convert_ << "'"<< std::endl;
 	}		
 }
 
@@ -153,19 +157,21 @@ void	ScalarConverter::convertToInt( void )
 
 void	ScalarConverter::printInt( void )
 {
+	std::cout << std::left;
+	std::cout<< std::setw(10);
 	if (ScalarConverter::Type_ == noDataType || ScalarConverter::nan_found_ || ScalarConverter::inf_found_ || ScalarConverter::int_flag_ == false)
 	{
-		std::cout << "int:	impossible" << std::endl;
+		std::cout << "int:" << "impossible" << std::endl;
 	}
 	else
 	{
-		std::cout << "int:	" << ScalarConverter::int_convert_ << std::endl;
+		std::cout << "int:" << ScalarConverter::int_convert_ << std::endl;
 	}
 }
 
 void	ScalarConverter::convertToFloat( void )
 {
-	if (ScalarConverter::checkInRange(intDataType) && ScalarConverter::float_flag_)
+	if (ScalarConverter::checkInRange(floatDataType) && ScalarConverter::float_flag_)
 	{
 		switch (ScalarConverter::Type_)
 		{
@@ -190,25 +196,31 @@ void	ScalarConverter::convertToFloat( void )
 
 void	ScalarConverter::printFloat( void )
 {
+	std::cout << std::left;
+	std::cout<< std::setw(10);
 	if (ScalarConverter::Type_ == noDataType || (ScalarConverter::float_flag_ == false && ScalarConverter::Type_ != nanDataType))
 	{
-		std::cout << "float:	impossible" << std::endl;
+		std::cout << "float:" << "impossible" << std::endl;
 	}
 	else if (ScalarConverter::Type_ == nanDataType)
 	{
-		std::cout << "float:	nanf" << std::endl;
+		std::cout << "float:" << "nanf" << std::endl;
 	}
 	else if (ScalarConverter::Type_ == negInfDataType)
 	{
-		std::cout << "float:	-inff" << ScalarConverter::float_convert_ << std::endl;
+		std::cout << "float:" << "-inff" << ScalarConverter::float_convert_ << std::endl;
 	}
 	else if (ScalarConverter::Type_ == posInfDataType)
 	{
-		std::cout << "float:	+inff" << ScalarConverter::float_convert_ << std::endl;
+		std::cout << "float:" << "+inff" << ScalarConverter::float_convert_ << std::endl;
 	}
 	else
 	{
-		std::cout << "float: " << ScalarConverter::float_convert_ << std::endl;
+		float mantissa = ScalarConverter::float_convert_ - static_cast<int>(float_convert_);
+		if (mantissa != 0.0f)
+			std::cout << "float:" << ScalarConverter::float_convert_ << std::setw(0) << "f"<< std::endl;
+		else
+			std::cout << "float:" << ScalarConverter::float_convert_ << std::setw(0) << ".0f" << std::endl;
 	}
 }
 
@@ -239,25 +251,31 @@ void	ScalarConverter::convertToDouble( void )
 
 void	ScalarConverter::printDouble( void )
 {
+	std::cout << std::left;
+	std::cout<< std::setw(10);
 	if (ScalarConverter::Type_ == noDataType || (ScalarConverter::double_flag_ == false && ScalarConverter::Type_ != nanDataType))
 	{
-		std::cout << "double:	impossible" << std::endl;
+		std::cout << "double:" << "impossible" << std::endl;
 	}
 	else if (ScalarConverter::Type_ == nanDataType)
 	{
-		std::cout << "double:	nan" << std::endl;
+		std::cout << "double:" << "nan" << std::endl;
 	}
 	else if (ScalarConverter::Type_ == negInfDataType)
 	{
-		std::cout << "double:	-inf" << ScalarConverter::double_convert_ << std::endl;
+		std::cout << "double:" << "-inf" << ScalarConverter::double_convert_ << std::endl;
 	}
 	else if (ScalarConverter::Type_ == posInfDataType)
 	{
-		std::cout << "double:	+inf" << ScalarConverter::double_convert_ << std::endl;
+		std::cout << "double:" << "+inf" << ScalarConverter::double_convert_ << std::endl;
 	}
 	else
 	{
-		std::cout << "double: " << ScalarConverter::double_convert_ << std::endl;
+		double mantissa = ScalarConverter::float_convert_ - static_cast<int>(float_convert_);
+		if (mantissa != 0.0f)
+			std::cout << "double:" << ScalarConverter::double_convert_ << std::endl;
+		else
+			std::cout << "double:" << ScalarConverter::double_convert_ << std::setw(0) << ".0" << std::endl;
 	}
 }
 
@@ -310,7 +328,7 @@ bool ScalarConverter::isInf( const std::string& input )
 	return (false);
 }
 
-bool	ScalarConverter::isPossible( std::string input )
+bool	ScalarConverter::isPossible( const std::string& input )
 {
 	std::string temp = input;
 
@@ -387,6 +405,10 @@ void	ScalarConverter::doFirstConversion( std::string& input )
 				ScalarConverter::double_convert_ = stod(input, nullptr);
 				break;
 			default:
+				ScalarConverter::char_flag_ = false;///check 
+				ScalarConverter::int_flag_ = false;
+				ScalarConverter::float_flag_ = false;
+				ScalarConverter::double_flag_ = false;
 				break;
 		}
 	}
@@ -401,54 +423,32 @@ void	ScalarConverter::doFirstConversion( std::string& input )
 	
 }
 
-// void ScalarConverter::printInvalidInput( void )
-// {
-// 	if (ScalarConverter::Type_ == noDataType)
-// 	{
-// 		std::cout << "char: 	impossible";
-// 		std::cout << "int: 		impossible";
-// 		std::cout << "float: 	impossible";
-// 		std::cout << "double: 	impossible";
-// 	}
-// }
-
 /* PUBLIC CLASS STATIC METHODS */
 
 void	ScalarConverter::Convert( std::string input ) 
 {
 
 	ScalarConverter::detectType(input);
-	// if (ScalarConverter::Type_ == noDataType || ScalarConverter::Type_ == nanDataType || ScalarConverter::Type_ == posInfDataType || ScalarConverter::Type_ == negInfDataType)
-	// {
-	// 	printInvalidInput();
-	// }
-	// else
-	// {
-		ScalarConverter::limit_checker = ScalarConverter::setLimitChecker(input);////
-		doFirstConversion(input);
-		if (ScalarConverter::Type_ != charDataType)
-		{
-			ScalarConverter::convertToChar();
-		}
-		ScalarConverter::printChar();
-		if (ScalarConverter::Type_ != intDataType)
-		{
-			ScalarConverter::convertToInt();
-		}
-		ScalarConverter::printInt();
-		if (ScalarConverter::Type_ != floatDataType)
-		{
-			ScalarConverter::convertToFloat();
-		}
-		ScalarConverter::printFloat();
-		if (ScalarConverter::Type_ != doubleDataType)
-		{
-			ScalarConverter::convertToDouble();
-		}
-		ScalarConverter::printDouble();
-	// }
-		// if (ScalarConverter::char_flag_ == true)
-		// 	std::cout << "char: " << ScalarConverter::char_convert_ << " flag: " << ScalarConverter::char_flag_ << std::endl;
-		// else
-		// 	std::cout << "char: value not a valid char" << std::endl;
+	ScalarConverter::limit_checker = ScalarConverter::setLimitChecker(input);////
+	doFirstConversion(input);
+	if (ScalarConverter::Type_ != charDataType)
+	{
+		ScalarConverter::convertToChar();
+	}
+	if (ScalarConverter::Type_ != intDataType)
+	{
+		ScalarConverter::convertToInt();
+	}
+	if (ScalarConverter::Type_ != floatDataType)
+	{
+		ScalarConverter::convertToFloat();
+	}
+	if (ScalarConverter::Type_ != doubleDataType)
+	{
+		ScalarConverter::convertToDouble();
+	}
+	ScalarConverter::printChar();
+	ScalarConverter::printInt();
+	ScalarConverter::printFloat();
+	ScalarConverter::printDouble();
 }

@@ -31,7 +31,7 @@ class	ScalarConverter
 
 		static bool isNaN( const std::string& input );
 		static bool isInf( const std::string& input );
-		static bool	isPossible( std::string input );
+		static bool	isPossible( const std::string& input );
 
 		static int		Type_;
 		static char		char_convert_;
