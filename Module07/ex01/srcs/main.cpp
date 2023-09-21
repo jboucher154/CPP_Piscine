@@ -10,22 +10,22 @@ int	main( void )
 		std::string str_array[] = {"hi", "I'm", "an", "array", "of", "strings!"};
 
 		std::cout << "\n INT ARRAY ITER" << std::endl;
-		::iter(int_array, 10, ::print);
+		::iter(int_array, 10, ::print_const);
 		std::cout << std::endl;
 		::iter(int_array, 10, ::plus_one<int>);
 		::iter(int_array, 10, ::print_nonconst<int>);
 		std::cout << "\n FLOAT ARRAY ITER" << std::endl;
-		::iter(float_array, 10, ::print);
+		::iter(float_array, 10, ::print_const);
 		std::cout << std::endl;
 		::iter(float_array, 10, ::plus_one<float>);
 		::iter(float_array, 10, ::print_nonconst<float>);
 		std::cout << "\n DOUBLE ARRAY ITER" << std::endl;
-		::iter(double_array, 10, ::print);
+		::iter(double_array, 10, ::print_const);
 		std::cout << std::endl;
 		::iter(double_array, 10, ::plus_one<double>);
 		::iter(double_array, 10, ::print_nonconst<double>);
 		std::cout << "\n STRING ARRAY ITER" << std::endl;
-		::iter(str_array, 6, ::print);
+		::iter(str_array, 6, ::print_const);
 		std::cout << std::endl;
 		::iter(str_array, 6, ::plus_one<std::string>);
 		::iter(str_array, 6, ::print_nonconst<std::string>);

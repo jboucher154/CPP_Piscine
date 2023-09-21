@@ -27,7 +27,7 @@ void	print_nonconst( T& to_print )
 }
 
 template <typename T>
-void	print( const T& to_print )
+void	print_const( const T& to_print )
 {
 	std::cout << to_print << " ";
 }
