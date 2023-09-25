@@ -47,8 +47,16 @@ class	Array
 			}
 			return (*this);
 		};
+		// T&	operator[]( int index );
+		// const T&	operator[]( int index ) const;
+		T&	operator[]( int index ) {
+			if (index < 0 || index >= this->size_) {
+				throw(IndexOutOfBounds());
+			}
+			return (this->array_[index]);
+		};
 
-		T&	operator[]( int index ) const {
+		const T&	operator[]( int index ) const {
 			if (index < 0 || index >= this->size_) {
 				throw(IndexOutOfBounds());
 			}
@@ -61,5 +69,20 @@ class	Array
 		/* PUBLIC METHODS */
 };
 
+// template < typename T >
+// T&	Array<T>::operator[]( int index ) {
+// 	if (index < 0 || index >= this->size_) {
+// 		throw(IndexOutOfBounds());
+// 	}
+// 	return (this->array_[index]);
+// };
+
+// template < typename T >
+// const T&	Array<T>::operator[]( int index ) const {
+// 	if (index < 0 || index >= this->size_) {
+// 		throw(IndexOutOfBounds());
+// 	}
+// 	return (this->array_[index]);
+// };
 
 #endif
