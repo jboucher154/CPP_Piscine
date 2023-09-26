@@ -27,7 +27,6 @@ int	main( void )
 		std::cout << "\n STRING ARRAY ITER" << std::endl;
 		::iter(str_array, 6, ::print_const);
 		std::cout << std::endl;
-		::iter(str_array, 6, ::plus_one<std::string>);
 		::iter(str_array, 6, ::print_nonconst<std::string>);
 		std::cout << std::endl;
 	}

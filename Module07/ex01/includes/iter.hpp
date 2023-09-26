@@ -35,7 +35,7 @@ void	print_const( const T& to_print )
 template <typename T>
 void	plus_one( T& add_too)
 {
-	add_too += 1;
+	add_too++;
 }
 
 #endif

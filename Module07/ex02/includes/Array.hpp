@@ -7,7 +7,6 @@ template <typename T>
 class	Array 
 {
 	private:
-		/* PRIVATE METHODS AND MEMBERS */
 		T	*array_;
 		int	size_;
 
@@ -47,8 +46,7 @@ class	Array
 			}
 			return (*this);
 		};
-		// T&	operator[]( int index );
-		// const T&	operator[]( int index ) const;
+
 		T&	operator[]( int index ) {
 			if (index < 0 || index >= this->size_) {
 				throw(IndexOutOfBounds());
@@ -66,23 +64,7 @@ class	Array
 		int	size( void ) const {
 			return (this->size_);
 		};
-		/* PUBLIC METHODS */
+
 };
-
-// template < typename T >
-// T&	Array<T>::operator[]( int index ) {
-// 	if (index < 0 || index >= this->size_) {
-// 		throw(IndexOutOfBounds());
-// 	}
-// 	return (this->array_[index]);
-// };
-
-// template < typename T >
-// const T&	Array<T>::operator[]( int index ) const {
-// 	if (index < 0 || index >= this->size_) {
-// 		throw(IndexOutOfBounds());
-// 	}
-// 	return (this->array_[index]);
-// };
 
 #endif

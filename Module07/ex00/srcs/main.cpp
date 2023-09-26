@@ -17,8 +17,6 @@ class TestTemplates
 std::ostream&	operator<<(std::ostream& output_stream, const TestTemplates& to_print) { output_stream << to_print.getValue(); return (output_stream);};
 
 
-
-
 /* FROM SUBJECT */
 int main( void ) 
 {
@@ -77,3 +75,38 @@ int main( void )
 
 	return 0;
 }
+
+// #include <iostream>
+// #include <string>
+// // #include "Swap.hpp"
+// // #include "Min.hpp"
+// // #include "Max.hpp"
+
+// class Awesome
+// {
+//   public:
+//     Awesome(void) : _n(0) {}
+//     Awesome( int n ) : _n( n ) {}
+//     Awesome & operator= (Awesome & a) { _n = a._n; return *this; }
+//     bool operator==( Awesome const & rhs ) const { return (this->_n == rhs._n); }
+//     bool operator!=( Awesome const & rhs ) const{ return (this->_n != rhs._n); }
+//     bool operator>( Awesome const & rhs ) const { return (this->_n > rhs._n); }
+//     bool operator<( Awesome const & rhs ) const { return (this->_n < rhs._n); }
+//     bool operator>=( Awesome const & rhs ) const { return (this->_n >= rhs._n); }
+//     bool operator<=( Awesome const & rhs ) const { return (this->_n <= rhs._n); }
+//     int get_n() const { return _n; }
+//   private:
+//     int _n;
+// };
+// std::ostream & operator<<(std::ostream & o, const Awesome &a) { o << a.get_n(); return o; }
+
+// int main(void)
+// {
+// 	Awesome a(2), b(4);
+
+//         swap(a, b);
+//         std::cout << a << " " << b << std::endl;
+//         std::cout << max(a, b) << std::endl;
+//         std::cout << min(a, b) << std::endl;
+//         return (0);
+// }
