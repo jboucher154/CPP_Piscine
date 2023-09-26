@@ -2,7 +2,6 @@
 # define MUTANTSTACK_HPP
 
 # include <stack>
-// # include <deque>
 # include <vector>
 # include <iterator>
 
@@ -13,38 +12,32 @@ class	MutantStack : public std::stack<T, Container>
 		/* PRIVATE METHODS AND MEMBERS */
 
 	public:
-		MutantStack( void ) : std::stack<T, Container>() {};
-		MutantStack<T, Container>( Container existing ) : std::stack<T, Container>(existing) {}; 
-		MutantStack( const MutantStack<T>& to_copy ) {
-			*this = to_copy;
-		};
+		MutantStack<T, Container>( void );
+		MutantStack<T, Container>( Container existing ); 
+		MutantStack( const MutantStack<T, Container>& to_copy );
 
-		~MutantStack( void ) {};
+		~MutantStack( void );
 
-		MutantStack&	operator=( const MutantStack<T>& to_copy ) {
-			if (this != &to_copy) {
-				std::stack<T>::operator=(to_copy);
-			}
-			return (*this);
-		};
+		MutantStack&	operator=( const MutantStack<T, Container>& to_copy );
 
 		/* TYPEDEFS */
-		typedef	typename std::stack<T>::container_type::iterator iterator;
-		typedef	typename std::stack<T>::container_type::const_iterator const_iterator;
+		typedef	typename std::stack<T, Container>::container_type::iterator 				iterator;
+		typedef	typename std::stack<T, Container>::container_type::const_iterator 			const_iterator;
+		typedef	typename std::stack<T, Container>::container_type::reverse_iterator 		reverse_iterator;
+		typedef	typename std::stack<T, Container>::container_type::const_reverse_iterator	const_reverse_iterator;
 
 		/* PUBLIC METHODS */
-		MutantStack::iterator	begin( void ) {
-			return (this->::std::stack<T>::c.begin());
-		}
-		MutantStack::iterator	end( void ) {
-			return (this->::std::stack<T>::c.end());
-		}
-		MutantStack::const_iterator	begin( void ) const {
-			return (this->::std::stack<T>::c.begin());
-		}
-		MutantStack::const_iterator	end( void ) const {
-			return (this->::std::stack<T>::c.end());
-		}
+		typename MutantStack<T, Container>::iterator		begin( void );
+		typename MutantStack<T, Container>::iterator		end( void );
+		typename MutantStack<T, Container>::const_iterator	begin( void ) const;
+		typename MutantStack<T, Container>::const_iterator	end( void ) const; 
+		
+		typename MutantStack<T, Container>::reverse_iterator		rbegin( void );
+		typename MutantStack<T, Container>::reverse_iterator		rend( void );
+		typename MutantStack<T, Container>::const_reverse_iterator	rbegin( void ) const;
+		typename MutantStack<T, Container>::const_reverse_iterator	rend( void ) const;
 };
+
+#include "MutantStack.tpp"
 
 #endif
