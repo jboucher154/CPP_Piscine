@@ -112,7 +112,43 @@ int	main( void ) {
 			std::cout << e.what() << std::endl;
 		}
 	}
+	{
+		std::cout << "\n--Tests Span, multiple additions--" << std::endl;
+		try {
+			int 	large[5];
+			Span	span(10);
 
+			span.addNumber(1);
+			span.addNumber(1);
+			span.addNumber(2);
+			span.addNumber(3);
+			span.addNumber(4);
 
+			for (int i = 0; i < 10; i++) {
+				int random = i + 6;
+				large[i] = random;
+			}
+			span.addManyNumbers(large, 5);
+			std::cout << "Shortest span is: " << span.shortestSpan() << std::endl;
+			std::cout << "Longest Span is: " << span.longestSpan() << std::endl;
+		} catch (std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
+	{
+		std::cout << "\n--Tests OTHER --" << std::endl;
+		try {
+			Span	span(10);
+
+			span.addNumber(std::numeric_limits<int>::min());
+			span.addNumber(std::numeric_limits<int>::max());
+			span.addNumber(0);
+
+			std::cout << "Shortest span is: " << span.shortestSpan() << std::endl;
+			std::cout << "Longest Span is: " << span.longestSpan() << std::endl;
+		} catch (std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
 	return  (0);
 }
