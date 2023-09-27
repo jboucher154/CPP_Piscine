@@ -16,6 +16,9 @@ class	ScavTrap : virtual public ClapTrap {
 		void	attack( const std::string& target );
 		void	gaurdGate( void );
 
+	// protected:
+	// 	int energy_points_;
+
 	private:
 		ScavTrap( void );
 

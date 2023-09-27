@@ -1,11 +1,12 @@
 
 #include "DiamondTrap.hpp"
 #include "Color.hpp"
+#include <iostream>
 	
 /* CONSTRUCTORS */
 
 DiamondTrap::DiamondTrap( void ) 
-: ScavTrap("default"), FragTrap("default"), name_("default") {
+: FragTrap("default"), ScavTrap("default"), name_("default") {
 	std::cout << COLOR_BRIGHT_YELLOW;
 	std::cout << "DiamondTrap default constructor called" << std::endl;
 	std::cout << COLOR_RESET;
@@ -13,10 +14,11 @@ DiamondTrap::DiamondTrap( void )
 	this->hit_points_ = this->FragTrap::hit_points_;
 	this->energy_points_ = this->ScavTrap::energy_points_;
 	this->attack_damage_ = this->FragTrap::attack_damage_;
+	std::cout << "Diamond trap stuffs: hitpoints " << this->hit_points_ << " energy: " << this->energy_points_ << " from scav: " << this->ScavTrap::energy_points_ << " attack : " << this->attack_damage_ << std::endl;
 }
 
 DiamondTrap::DiamondTrap( std::string name ) 
-: ScavTrap(name), FragTrap(name), name_(name) {
+: FragTrap(name), ScavTrap(name), name_(name) {
 	std::cout << COLOR_BRIGHT_YELLOW;
 	std::cout << "DiamondTrap parameterized constructor called" << std::endl;
 	std::cout << COLOR_RESET;
@@ -24,10 +26,11 @@ DiamondTrap::DiamondTrap( std::string name )
 	this->hit_points_ = this->FragTrap::hit_points_;
 	this->energy_points_ = this->ScavTrap::energy_points_;
 	this->attack_damage_ = this->FragTrap::attack_damage_;
+	std::cout << "Diamond trap stuffs: hitpoints " << this->hit_points_ << " energy: " << this->energy_points_ << " from scav: " << this->ScavTrap::energy_points_ << " attack : " << this->attack_damage_ << std::endl;
 }
 
 DiamondTrap::DiamondTrap( const DiamondTrap& to_copy) 
-: ClapTrap(to_copy.name_ + "_clap_name"), ScavTrap(to_copy.name_), FragTrap(to_copy.name_) {
+: ClapTrap(to_copy.name_ + "_clap_name"), FragTrap(to_copy.name_), ScavTrap(to_copy.name_) {
 	std::cout << COLOR_BRIGHT_YELLOW;
 	std::cout << "DiamondTrap copy constructor called" << std::endl;
 	std::cout << COLOR_RESET;
