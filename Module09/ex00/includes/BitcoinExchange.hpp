@@ -4,6 +4,7 @@
 # include <iostream>
 # include <map>
 # include <string>
+# include <exception>
 
 class	BitcoinExchange 
 {
@@ -18,23 +19,35 @@ class	BitcoinExchange
 
 	public:
 		BitcoinExchange( void );
-		// BitcoinExchange( std::string input_file );
 		BitcoinExchange( const BitcoinExchange& to_copy );
 
 		~BitcoinExchange( void );
 
 		BitcoinExchange&	operator=( const BitcoinExchange& to_copy );
 
-		void	processInput( std::string input_file );
 		void	processLine( std::string input_line );
 		void	validateLine( std::string input_line );
 
 		/* CLASS EXCEPTIONS */
-		// class	BadFileNameException : public std::exception {
-		// 	virtual const char* what( void ) const throw();
-		// };
+		class	BadInputException : public std::exception {
+			public:
+				virtual const char* what( void ) const throw();
+		};
+		class	BadDateException : public std::exception {
+			public:
+				virtual const char* what( void ) const throw();
+		};
+		class	ValueTooHighException : public std::exception {
+			public:
+				virtual const char* what( void ) const throw();
+		};
+		class	ValueTooLowException : public std::exception {
+			public:
+				virtual const char* what( void ) const throw();
+		};
 
 		/* PUBLIC METHODS */
+		void	processInput( std::string input_file );
 
 
 };

@@ -13,11 +13,6 @@ BitcoinExchange::BitcoinExchange( void )
 	this->processDataFile_();
 }
 
-// BitcoinExchange::BitcoinExchange( std::string input_file )
-// : input_file_(input_file) {
-// 	this->processDataFile_();//build database
-// }
-
 BitcoinExchange::BitcoinExchange( const BitcoinExchange& to_copy ) {
 	*this = to_copy;
 }
@@ -25,16 +20,14 @@ BitcoinExchange::BitcoinExchange( const BitcoinExchange& to_copy ) {
 
 /* DESTRUCTOR */
 
-BitcoinExchange::~BitcoinExchange( void )
-{
+BitcoinExchange::~BitcoinExchange( void ) {
 	/* destructor */
 }
  
 
 /* OPERATOR OVERLOADS */
 
-BitcoinExchange&	BitcoinExchange::operator=( const BitcoinExchange& to_copy )
-{
+BitcoinExchange&	BitcoinExchange::operator=( const BitcoinExchange& to_copy ) {
 	if (this != &to_copy) {
 		this->input_file_ = to_copy.input_file_;
 		this->database_ = to_copy.database_;
@@ -44,6 +37,7 @@ BitcoinExchange&	BitcoinExchange::operator=( const BitcoinExchange& to_copy )
 
 /* CLASS PUBLIC METHODS */
 
+/*Functions for line validation*/
 static bool	isLeapYear( int year ) {
 	if ((year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0)) {
 		return (true);
@@ -52,20 +46,24 @@ static bool	isLeapYear( int year ) {
 }
 
 static bool validateYear( std::tm *local_time, int year ) {
-	return (year > local_time->tm_year + 1900 || year < 1900);
+	return (year < local_time->tm_year + 1900 && year >= 1900);
 }
 
 static bool validateMonth(std::tm *local_time, int year, int month) {
-	return ((month < 1 || month > 12) && (year == local_time->tm_year + 1900) && month > local_time->tm_mon);
+	if (month < 1 || month > 12) {
+		return (false);
+	}
+	else if ((year == local_time->tm_year + 1900) && month > local_time->tm_mon) {
+		return (false);
+	}
+	return (true);
 }
 
 static bool validateDay(std::tm *local_time, int year, int month, int day) {
-	bool	valid;
-
 	if ( day > 31 || day < 1 ) {
 		return (false);
 	}
-	else if (month == 2 && (day > 29 || isLeapYear(year) && day  > 28)) {
+	else if (month == 2 && (day > 29 || (isLeapYear(year) && day  > 28))) {
 		return (false);
 	}
 	else if (((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)) {
@@ -96,32 +94,44 @@ void	BitcoinExchange::validateLine( std::string input_line ) {
 	int		year, month, day;
 	float	value;
 	char	trash;
-
+	
 	ss_line >> year >> trash >> month >> trash >> day >> trash >> value;
 	if (ss_line.fail() && trash != '|' && !ss_line.eof()) {
-		std::cout << "OH NO!!!!" << std::endl;
-		throw(std::runtime_error("Invalid format of line from in put file")); //bad input exception for entire line
+		throw(BadInputException());
 	}
 	if (!checkDate(year, month, day)) {
-		throw(std::runtime_error("Invalid format of line from in put file")); //bad in put exception but for date specifically
+		throw(BadDateException());
 	}
-	if (value > 1000 || value < 0) { //bad value exception
-		std::cout << "Invalid value!" << std::endl;
-		throw(std::runtime_error("Invalid format of line from in put file"));
+	if (value > 1000) {
+		throw(ValueTooHighException());
 	}
-	std::cout << year << " " << month << " " << day << " " << value << std::endl;
+	else if (value < 0) {
+		throw(ValueTooLowException());
+	}
+	// std::cout << year << " " << month << " " << day << " " << value << std::endl;//
 }
+/**/
 
 void	BitcoinExchange::processLine( std::string input_line ) {
 	//validate the line
 	try {
 		validateLine(input_line);
-	} catch (std::exception& e) {
+		//search for match
+		std::map<std::string, float>::const_iterator = searchForInput(input_line);
+		//calculate output
+		//print output
+	} catch (BadInputException& e) {
+		std::cout << "Error: " << e.what() << input_line << std::endl;
+	} catch (BadDateException& e) {
+		std::istringstream	ss_for_date(input_line);
+		std::string str_date;
+		getline(ss_for_date, str_date, '|');
+		std::cout << "Error: " << e.what() << " " << str_date << std::endl;
+	} catch (ValueTooLowException& e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	} catch (ValueTooHighException& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
-	//search for match
-	//calculate output
-	//print output
 }
 
 void	BitcoinExchange::processInput( std::string input_file ) {
@@ -169,6 +179,18 @@ void	BitcoinExchange::processDataFile_( void ) {
 }
 
 /* CLASS EXCEPTIONS */
-// const char* BitcoinExchange::BadFileNameException::what( void ) const throw() {
-// 	return ("Error: could not open file");
-// }
+const char* BitcoinExchange::BadInputException::what( void ) const throw() {
+	return ("bad input =>");
+}
+
+const char* BitcoinExchange::BadDateException::what( void ) const throw() {
+	return ("bad input =>");
+}
+
+const char* BitcoinExchange::ValueTooHighException::what( void ) const throw() {
+	return ("too large a number.");
+}
+
+const char* BitcoinExchange::ValueTooLowException::what( void ) const throw() {
+	return ("not a positive number.");
+}
