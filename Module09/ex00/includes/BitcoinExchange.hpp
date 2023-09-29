@@ -8,22 +8,26 @@
 class	BitcoinExchange 
 {
 	private:
-		BitcoinExchange( void );
 
 		/* PRIVATE METHODS AND MEMBERS */
-		std::string						fname_;
+		std::string						input_file_;
 		std::map<std::string, float>	database_;
 
 		static const std::string	data_file_;
 		void	processDataFile_( void ); // throw(BadFileNameException());
 
 	public:
-		BitcoinExchange( std::string input_file );
+		BitcoinExchange( void );
+		// BitcoinExchange( std::string input_file );
 		BitcoinExchange( const BitcoinExchange& to_copy );
 
 		~BitcoinExchange( void );
 
 		BitcoinExchange&	operator=( const BitcoinExchange& to_copy );
+
+		void	processInput( std::string input_file );
+		void	processLine( std::string input_line );
+		void	validateLine( std::string input_line );
 
 		/* CLASS EXCEPTIONS */
 		// class	BadFileNameException : public std::exception {

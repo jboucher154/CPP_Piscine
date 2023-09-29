@@ -8,7 +8,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	try {
-		BitcoinExchange	btc(argv[1]);
+		BitcoinExchange	btc_db;
+		
+		btc_db.processInput(argv[1]);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
