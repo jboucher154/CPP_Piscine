@@ -63,7 +63,7 @@ static bool validateDay(std::tm *local_time, int year, int month, int day) {
 	if ( day > 31 || day < 1 ) {
 		return (false);
 	}
-	else if (month == 2 && (day > 29 || (isLeapYear(year) && day  > 28))) {
+	else if (month == 2 && (day > 29 || (!isLeapYear(year) && day > 28))) {
 		return (false);
 	}
 	else if (((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)) {
@@ -88,15 +88,15 @@ static bool	checkDate(int year, int month, int day) {
 	return (true);
 }
 
-void	BitcoinExchange::validateLine( std::string input_line ) {
+void	BitcoinExchange::validateLine( std::string& input_line, size_t date_length ) {
 
 	std::istringstream	ss_line(input_line);
 	int		year, month, day;
 	float	value;
-	char	trash;
-	
-	ss_line >> year >> trash >> month >> trash >> day >> trash >> value;
-	if (ss_line.fail() && trash != '|' && !ss_line.eof()) {
+	char	trash1, trash2, trash3;
+	//check the trash!
+	ss_line >> year >> trash1 >> month >> trash2 >> day >> trash3 >> value;
+	if (date_length != 10 || ss_line.fail() || trash1 != '-' || trash2 != '-' || trash3 != '|' || !ss_line.eof()) {
 		throw(BadInputException());
 	}
 	if (!checkDate(year, month, day)) {
@@ -108,24 +108,46 @@ void	BitcoinExchange::validateLine( std::string input_line ) {
 	else if (value < 0) {
 		throw(ValueTooLowException());
 	}
-	// std::cout << year << " " << month << " " << day << " " << value << std::endl;//
 }
-/**/
+/* End line validation functions */
 
-void	BitcoinExchange::processLine( std::string input_line ) {
-	//validate the line
+/* Fuctions for searching the requested instance */
+
+std::map<std::string, float>::const_iterator	BitcoinExchange::searchForInput(std::string& str_date) {
+	std::map<std::string, float>::const_iterator entry = this->database_.lower_bound(str_date);
+	if (entry == this->database_.begin() && entry->first > str_date) {
+		throw (BadDateException());
+    }
+	if (entry != this->database_.begin() && (entry == this->database_.end() || entry->first > str_date)) {
+        --entry;
+    }
+	return (entry);
+}
+
+/* End of searching for instance functions */
+
+/* Printing of search result outputs */
+
+void	BitcoinExchange::printResult(float entry, std::string date, float balance) {
+	float value = entry * balance;
+
+	std::cout << date << " => " << balance  << " = " << value << std::endl;
+}
+
+void	BitcoinExchange::processLine( std::string& input_line ) {
+	std::istringstream	ss(input_line);
+	std::string str_date;
+	getline(ss, str_date, ' ');
+	float		balance;
+	char 		trash;
+	ss >> trash >> balance;
 	try {
-		validateLine(input_line);
-		//search for match
-		std::map<std::string, float>::const_iterator = searchForInput(input_line);
-		//calculate output
-		//print output
+		validateLine(input_line, str_date.length());
+		std::map<std::string, float>::const_iterator entry = searchForInput(str_date);
+		printResult(entry->second, str_date, balance);
 	} catch (BadInputException& e) {
 		std::cout << "Error: " << e.what() << input_line << std::endl;
 	} catch (BadDateException& e) {
-		std::istringstream	ss_for_date(input_line);
-		std::string str_date;
-		getline(ss_for_date, str_date, '|');
 		std::cout << "Error: " << e.what() << " " << str_date << std::endl;
 	} catch (ValueTooLowException& e) {
 		std::cout << "Error: " << e.what() << std::endl;
@@ -141,6 +163,7 @@ void	BitcoinExchange::processInput( std::string input_file ) {
 	if (data_file.fail()) {
 		throw (std::runtime_error("Error: cannot open input file"));
 	}
+	getline(data_file, line);
 	while (getline(data_file, line)) {
 		if (!line.empty()) {
 			processLine(line);
@@ -171,10 +194,6 @@ void	BitcoinExchange::processDataFile_( void ) {
 			throw (std::runtime_error("Error: invalid contents of data file"));
 		}
 	}
-	// //
-	// for (std::map<std::string, float>::const_iterator iter = this->database_.begin(); iter != this->database_.end(); iter++) {
-	// 	std::cout << iter->first << " " << std::fixed << std::setprecision(2) << iter->second <<std::endl;
-	// }//
 	data_file.close();
 }
 

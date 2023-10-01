@@ -25,8 +25,10 @@ class	BitcoinExchange
 
 		BitcoinExchange&	operator=( const BitcoinExchange& to_copy );
 
-		void	processLine( std::string input_line );
-		void	validateLine( std::string input_line );
+		void	processLine( std::string& input_line );
+		void	validateLine( std::string& input_line, size_t date_length );
+		std::map<std::string, float>::const_iterator	searchForInput(std::string& str_date);
+		void	printResult(float entry, std::string date, float value);
 
 		/* CLASS EXCEPTIONS */
 		class	BadInputException : public std::exception {
