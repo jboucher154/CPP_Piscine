@@ -94,7 +94,7 @@ void	BitcoinExchange::validateLine( std::string& input_line, size_t date_length 
 	int		year, month, day;
 	float	value;
 	char	trash1, trash2, trash3;
-	//check the trash!
+
 	ss_line >> year >> trash1 >> month >> trash2 >> day >> trash3 >> value;
 	if (date_length != 10 || ss_line.fail() || trash1 != '-' || trash2 != '-' || trash3 != '|' || !ss_line.eof()) {
 		throw(BadInputException());
