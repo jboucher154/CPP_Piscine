@@ -1,9 +1,8 @@
 #include "RPN.hpp"
 
 int	main( int argc, char *argv[] ) {
-
 	if (argc != 2) {
-		std::cout << "Error: need exactly one argument" << std::endl;
+		std::cout << "Error: need exactly one argument." << std::endl;
 		return (1);
 	}
 	try {
@@ -13,7 +12,7 @@ int	main( int argc, char *argv[] ) {
 			}
 		}
 		else {
-			std::cout << "Error: invalid characters given in argument" << std::endl; 
+			std::cout << "Error: invalid characters given in argument." << std::endl; 
 		}
 	}
 	catch (std::exception& e) {
