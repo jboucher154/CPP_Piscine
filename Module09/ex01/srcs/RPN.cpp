@@ -39,7 +39,10 @@ bool	RPN::calculate( std::string input ) {
 	char				to_eval;
 
 	ss >> to_eval;
-	while (!ss.eof() && !ss.fail()) {
+	while (!ss.eof()) {
+		if (ss.fail()) {
+			throw (std::runtime_error("string stream failed to convert argument."));
+		}
 		if (std::isdigit(to_eval)) {
 			addToStack_(std::string(1, to_eval));
 		}
@@ -59,13 +62,6 @@ bool	RPN::calculate( std::string input ) {
 	RPN::result_ = RPN::rpn_stack_.top();
 	return (true);
 }
-/* destructive stack printing */
-// std::cout << "stack contents" << std::endl;//
-// for (int i = RPN::rpn_stack_.size(); i > 0; i--) {//
-// 	std::cout << RPN::rpn_stack_.top() << std::endl;
-// 	RPN::rpn_stack_.pop();
-// }
-// std::cout << "'" << to_eval << "'" << std::endl;
 
 double	RPN::getResult( void ) {
 	return (RPN::result_);
