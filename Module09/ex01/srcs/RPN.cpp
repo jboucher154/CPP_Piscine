@@ -2,6 +2,7 @@
 #include "RPN.hpp"
 
 std::stack<double>	RPN::rpn_stack_;
+double				RPN::result_ = 0;
 
 /* CONSTRUCTORS */
 
@@ -24,6 +25,7 @@ RPN&	RPN::operator=( const RPN& to_copy )
 }
 
 /* CLASS PUBLIC METHODS */
+
 bool	RPN::validateInput( std::string input ) {
 	if (input.find_first_not_of("0123456789 +-/*") != std::string::npos) {
 		return (false);
@@ -31,44 +33,53 @@ bool	RPN::validateInput( std::string input ) {
 	return (true);
 }
 
-double	RPN::caculate( std::string input ) {
+bool	RPN::calculate( std::string input ) {
+
 	std::istringstream	ss(input);
-	char				to_eval; //if handle negative, then this needs to be a string
-	try { //is it better to split the string to an array of chars?
-		while (!ss.eof()) {
-			ss >> to_eval;
-			if (std::isdigit(to_eval)) {
-				addToStack_(to_eval);
-			}
-			else {
-				if (RPN::rpn_stack_.size() < 2 ) {
-					std::cout << "Error: stack too small for op" << std::endl;
-					break ;
-					// throw(std::runtime_error("Invalid input"));
-				}
-				doOperation(to_eval);
-			}
-			ss >> to_eval;
-			if (to_eval != ' ') {
-				std::cout << "Error: no space" << std::endl;
-				break ;
-			}
+	char				to_eval;
+
+	ss >> to_eval;
+	while (!ss.eof() && !ss.fail()) {
+		if (std::isdigit(to_eval)) {
+			addToStack_(std::string(1, to_eval));
 		}
+		else {
+			if (RPN::rpn_stack_.size() < 2 ) {
+				std::cout << "Error: stack too small for operation" << std::endl;
+				return (false);
+			}
+			doOperation(to_eval);
+		}
+		ss >> to_eval;
 	}
-	catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+	if (RPN::rpn_stack_.size() != 1) {
+		std::cout << "Error: missing operator" << RPN::rpn_stack_.size() << std::endl;
+		return (false);
 	}
+	RPN::result_ = RPN::rpn_stack_.top();
+	return (true);
+}
+/* destructive stack printing */
+// std::cout << "stack contents" << std::endl;//
+// for (int i = RPN::rpn_stack_.size(); i > 0; i--) {//
+// 	std::cout << RPN::rpn_stack_.top() << std::endl;
+// 	RPN::rpn_stack_.pop();
+// }
+// std::cout << "'" << to_eval << "'" << std::endl;
+
+double	RPN::getResult( void ) {
+	return (RPN::result_);
 }
 
 /* CLASS PRIVATE METHODS */
 
-void	RPN::addToStack_(char to_eval) {
+void	RPN::addToStack_(std::string to_eval) {
 	std::istringstream	ss(to_eval);
 	double					num;
 
 	ss >> num;
 	if (ss.fail()) {
-		throw (std::runtime_error("Error: string stream failed to convert argument."));
+		throw (std::runtime_error("string stream failed to convert argument."));
 	}
 	RPN::rpn_stack_.push(num);
 }
@@ -86,30 +97,27 @@ void	RPN::doOperation(char operand) {
 	switch (operand) {
 		case '+':
 			result = RPN::add_(lhs, rhs);
-			// RPN::rpn_stack_.push(result);
 			break ;
 		case '-':
 			result = RPN::subtract_(lhs, rhs);
-			// RPN::rpn_stack_.push(result);
 			break ;
 		case '/':
 			result = RPN::divide_(lhs, rhs);
-			// RPN::rpn_stack_.push(result);
 			break ;
 		case '*':
 			result = RPN::multiply_(lhs, rhs);
-			// RPN::rpn_stack_.push(result);
 			break ;
 		default :
-			throw (std::runtime_error("Error: invalid operand found."));
+			throw (std::runtime_error("invalid operand found."));
 			break ;
 	}
 	RPN::rpn_stack_.push(result);
 }
 
 double	RPN::divide_(double lhs, double rhs) {
+	// std::cout << "hi from divide " << std::endl;
 	if (rhs == 0) {
-		throw (std::runtime_error("Error: cannot divide by zero."));
+		throw (std::runtime_error("cannot divide by zero."));
 	}
 	return (lhs / rhs);
 }
@@ -117,13 +125,28 @@ double	RPN::divide_(double lhs, double rhs) {
 //check for overflows in the operations
 
 double	RPN::multiply_(double lhs, double rhs) {
+	// std::cout << "hi from multiply " << std::endl;
+	long double product = lhs * rhs;
+	if (product > std::numeric_limits<double>::max() || product < -std::numeric_limits<double>::max()) {
+		throw (std::runtime_error("overflowed double data type"));
+	}
 	return (lhs * rhs);
 }
 
 double	RPN::add_(double lhs, double rhs) {
+	// std::cout << "hi from add " << std::endl;
+	long double sum = lhs + rhs;
+	if (sum > std::numeric_limits<double>::max() || sum < -std::numeric_limits<double>::max()) {
+		throw (std::runtime_error("overflowed double data type"));
+	}
 	return (lhs + rhs);
 }
 
 double	RPN::subtract_(double lhs, double rhs) {
+	// std::cout << "hi from subtract " << std::endl;
+	long double difference = lhs - rhs;
+	if (difference > std::numeric_limits<double>::max() || difference < -std::numeric_limits<double>::max()) {
+		throw (std::runtime_error("overflowed double data type"));
+	}
 	return (lhs - rhs);
 }

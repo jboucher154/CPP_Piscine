@@ -1,8 +1,8 @@
 
-NAME := btc
+NAME := RPN
 SRC_DIR := srcs/
 INC_DIR := -I./includes
-SRCS := main.cpp BitcoinExchange.cpp
+SRCS := main.cpp RPN.cpp
 
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)
@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	@echo "Making" $(NAME)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp includes/BitcoinExchange.hpp
+%.o: %.cpp includes/RPN.hpp
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
