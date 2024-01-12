@@ -131,7 +131,7 @@ std::map<std::string, float>::const_iterator	BitcoinExchange::searchForInput(std
 void	BitcoinExchange::printResult(float entry, std::string date, float balance) {
 	float value = entry * balance;
 
-	std::cout << date << " => " << balance  << " = " << value << std::endl;
+	std::cout << date << " => " << std::setprecision(0) << balance  << " = " << std::fixed << std::setprecision(2) << value << std::endl;
 }
 
 void	BitcoinExchange::processLine( std::string& input_line ) {

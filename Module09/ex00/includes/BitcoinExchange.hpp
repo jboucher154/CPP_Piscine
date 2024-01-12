@@ -51,7 +51,6 @@ class	BitcoinExchange
 		/* PUBLIC METHODS */
 		void	processInput( std::string input_file );
 
-
 };
 
 #endif
