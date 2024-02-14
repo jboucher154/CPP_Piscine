@@ -6,7 +6,7 @@ SRCS := main.cpp PmergeMe.cpp
 
 SRCS := $(addprefix $(SRC_DIR),$(SRCS))
 OBJS := $(SRCS:.cpp=.o)
-CFLAGS := -Wall -Wextra -Werror -std=c++98 $(INC_DIR) -g
+CFLAGS := -Wall -Wextra -Werror -std=c++14 $(INC_DIR) -g
 CC := c++
 
 all: $(NAME)
