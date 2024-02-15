@@ -37,7 +37,9 @@ BitcoinExchange&	BitcoinExchange::operator=( const BitcoinExchange& to_copy ) {
 
 /* CLASS PUBLIC METHODS */
 
-/*Functions for line validation*/
+/*
+*	Checks if current year is a leap year
+*/
 static bool	isLeapYear( int year ) {
 	if ((year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0)) {
 		return (true);
@@ -45,10 +47,17 @@ static bool	isLeapYear( int year ) {
 	return (false);
 }
 
+/*
+*	validates the current year within range of possible years in system 1900 - to current year
+*/
 static bool validateYear( std::tm *local_time, int year ) {
 	return (year < local_time->tm_year + 1900 && year >= 1900);
 }
 
+/*
+*	Validates a the input month given a valid year, and current time.
+*	Future dates are rejected.
+*/
 static bool validateMonth(std::tm *local_time, int year, int month) {
 	if (month < 1 || month > 12) {
 		return (false);
@@ -59,6 +68,9 @@ static bool validateMonth(std::tm *local_time, int year, int month) {
 	return (true);
 }
 
+/*
+*	Validates the specific day, given a valid year and month
+*/
 static bool validateDay(std::tm *local_time, int year, int month, int day) {
 	if ( day > 31 || day < 1 ) {
 		return (false);
@@ -75,6 +87,9 @@ static bool validateDay(std::tm *local_time, int year, int month, int day) {
 	return (true);
 }
 
+/*
+*	validates elements of the input date.
+*/
 static bool	checkDate(int year, int month, int day) {
 	std::time_t	now_time = std::time(NULL);
 	std::tm*	local_time = std::localtime(&now_time);
@@ -88,6 +103,10 @@ static bool	checkDate(int year, int month, int day) {
 	return (true);
 }
 
+/*
+*	Validates all elements in the input line. Throws appropriate exception if 
+*	values are invalid or out of range.
+*/
 void	BitcoinExchange::validateLine( std::string& input_line, size_t date_length ) {
 
 	std::istringstream	ss_line(input_line);
@@ -109,10 +128,12 @@ void	BitcoinExchange::validateLine( std::string& input_line, size_t date_length 
 		throw(ValueTooLowException());
 	}
 }
-/* End line validation functions */
 
-/* Fuctions for searching the requested instance */
 
+/*
+*	Searches for the requested instance date in database, selecting previous date if an
+*	exact match wasn't found.
+*/
 std::map<std::string, float>::const_iterator	BitcoinExchange::searchForInput(std::string& str_date) {
 	std::map<std::string, float>::const_iterator entry = this->database_.lower_bound(str_date);
 	if (entry == this->database_.begin() && entry->first > str_date) {
@@ -124,10 +145,9 @@ std::map<std::string, float>::const_iterator	BitcoinExchange::searchForInput(std
 	return (entry);
 }
 
-/* End of searching for instance functions */
-
-/* Printing of search result outputs */
-
+/* 
+*	Printing of search result outputs in format, limiting precision to two decimal places.
+*/
 void	BitcoinExchange::printResult(float entry, std::string date, float balance) {
 	float value = entry * balance;
 
@@ -136,6 +156,10 @@ void	BitcoinExchange::printResult(float entry, std::string date, float balance) 
 	// std::cout << date << " => " << balance  << " = " << value << std::endl; //from local version need to test which is better
 }
 
+/*
+*	Processes a sinle entry from the input file, catching any exceptions 
+*	thrown during validation and processing.
+*/
 void	BitcoinExchange::processLine( std::string& input_line ) {
 	std::istringstream	ss(input_line);
 	std::string str_date;
@@ -158,6 +182,10 @@ void	BitcoinExchange::processLine( std::string& input_line ) {
 	}
 }
 
+/*
+*	Opens input file and processes all lines other than the first.
+*	Also skips any empty lines.
+*/
 void	BitcoinExchange::processInput( std::string input_file ) {
 	std::ifstream 	data_file(input_file);
 	std::string		line;
@@ -175,6 +203,9 @@ void	BitcoinExchange::processInput( std::string input_file ) {
 
 /* CLASS PRIVATE METHODS */
 
+/*
+*	Called by the constructor to prepare the database map
+*/
 void	BitcoinExchange::processDataFile_( void ) {
 	std::ifstream 	data_file(BitcoinExchange::data_file_);
 
