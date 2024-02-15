@@ -3,6 +3,7 @@
 int	main( int argc, char *argv[] ) {
 	if (argc != 2) {
 		std::cout << "Error: need exactly one argument." << std::endl;
+		std::cout << "Usage Nnote: try adding quotes around your argument." << std::endl;
 		return (1);
 	}
 	try {
