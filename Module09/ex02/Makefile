@@ -28,4 +28,8 @@ fclean: clean
 
 re: fclean all
 
+help:
+	@echo "Try making a list of integers for the program like this: "
+	@echo "ARG=\"\$$(shuf -i 0-2147483647 -n 3000 | tr '\\\n' ' ')\"; ./PmergeMe \$$ARG"
+
 .PHONY:
